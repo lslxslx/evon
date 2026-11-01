@@ -1444,18 +1444,68 @@ function initPage() {
     return { selected, years, auditor, supporting, total };
   }
 
+  // Normat lexohen nga referenca.json në folderin kryesor.
+  const configuredNorms = new Map();
+  let normsError = '';
+
+  async function loadLetterNorms() {
+    const select = $('letter-norm');
+    const button = $('generate-letter');
+    const note = $('letter-norm-note');
+    select.disabled = true;
+    button.disabled = true;
+    select.replaceChildren(new Option('Po ngarkohen normat…', ''));
+
+    try {
+      const response = await fetch('../referenca.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Nuk u ngarkua referenca.json.');
+      const references = await response.json();
+      const norms = references.normatMesimore;
+      if (!norms || !Array.isArray(norms.lista) || !norms.lista.length ||
+          typeof norms.referenca !== 'string' || !norms.referenca.trim()) {
+        throw new Error('Në referenca.json mungon lista normatMesimore ose referenca e saj.');
+      }
+      const items = new Map();
+      for (const item of norms.lista) {
+        if (!item || typeof item.id !== 'string' || !item.id.trim() ||
+            items.has(item.id.trim()) || typeof item.emertimi !== 'string' ||
+            !item.emertimi.trim() || typeof item.ore !== 'number' ||
+            !Number.isFinite(item.ore) || item.ore < 0) {
+          throw new Error('Lista normatMesimore ka një kategori të pavlefshme ose ID të përsëritur.');
+        }
+        items.set(item.id.trim(), {
+          emertimi: item.emertimi.trim(), ore: item.ore
+        });
+      }
+      select.replaceChildren(new Option('Zgjidhni kategorinë', ''));
+      configuredNorms.clear();
+      for (const [id, item] of items) {
+        configuredNorms.set(id, item.ore);
+        select.add(new Option(item.emertimi + ' (' + item.ore + ' orë)', id));
+      }
+      if (note) note.textContent = norms.referenca.trim();
+      normsError = '';
+      select.disabled = false;
+      button.disabled = false;
+      updateLetterPreview();
+    } catch (error) {
+      normsError = 'Normat nuk u ngarkuan: ' + error.message +
+        ' Kontrolloni referenca.json dhe rifreskoni faqen.';
+      select.replaceChildren(new Option('Normat nuk u ngarkuan', ''));
+      if (note) note.textContent = normsError;
+      $('letter-message').textContent = normsError;
+    }
+  }
+
   function letterNorm() {
-    const value = $('letter-norm').value.trim().replace(',', '.');
-    if (!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(value)) return NaN;
-    const number = Number(value);
-    return Number.isFinite(number) ? number : NaN;
+    return configuredNorms.get($('letter-norm').value) ?? NaN;
   }
 
   function updateLetterPreview() {
     const { selected, years, auditor, supporting, total } = letterSelection();
     const norm = letterNorm();
     const fmt = value => String(round(value));
-    $('letter-message').textContent = '';
+    $('letter-message').textContent = normsError;
     if (!selected.length) {
       $('letter-preview').textContent = 'Nuk ka evidenca të përzgjedhura.';
       return;
@@ -1490,7 +1540,7 @@ function initPage() {
       const norm = letterNorm();
       if (!status || !group) throw new Error('Zgjidhni statusin dhe grupin mësimor.');
       if (!Number.isFinite(norm) || norm < 0) {
-        throw new Error('Vendosni një normë mësimore të vlefshme, zero ose më të madhe.');
+        throw new Error('Zgjidhni një kategori nga lista e normave mësimore.');
       }
       // Kopje e tabelës së përzgjedhur, jo lidhje me të dhëna që ndryshojnë.
       const table = $('summary').closest('table').cloneNode(true);
@@ -1528,6 +1578,7 @@ function initPage() {
 
   refreshFilters();
   render();
+  loadLetterNorms();
 }
 
 // Eksporton vetëm tabelën 03, sipas filtrave aktualë.
