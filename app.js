@@ -80,10 +80,16 @@ async function loadFormReferences() {
       );
     }
 
+    configureWorkload(references.ngarkesa);
+
     formReferences = {
       drejtuesiDepartamentit: references.drejtuesiDepartamentit.trim()
     };
     applyFormReferences();
+    labels.forEach((_, index) => {
+      $('g' + index).max = references.ngarkesa.maksimumiGrupeve;
+    });
+    updateTotals();
     return formReferences;
   })();
 
@@ -433,6 +439,7 @@ function readForm() {
 
   const data = {
     ...institution,
+    ngarkesa: getWorkloadConfiguration(),
     credits: labels.map((_, index) => $('c' + index).value),
     groups: labels.map((_, index) => $('g' + index).value),
     notes: $('notes').value,
@@ -530,6 +537,7 @@ function changed() {
 
 function validationErrors(result) {
   const errors = [];
+  const maxGroups = getWorkloadConfiguration()?.maksimumiGrupeve ?? 6;
 
   if (!internalDate($('start').value)) {
     errors.push(
@@ -555,11 +563,11 @@ function validationErrors(result) {
     if (
       !Number.isInteger(groups) ||
       groups < 0 ||
-      groups > 6 ||
+      groups > maxGroups ||
       (credits > 0 && groups < 1)
     ) {
       errors.push(
-        label + ': lejohen 1–6 grupe kur ka kredite, ' +
+        label + ': lejohen 1–' + maxGroups + ' grupe kur ka kredite, ' +
         'ose 0 kur nuk ka.'
       );
     }
