@@ -1,5 +1,32 @@
 {
-  "administratori": "Z. Selam AGA",
+  "ngarkesa": {
+    "pershkrimi": "Orët e parashikuara llogariten sipas formulave të zbatuara në aplikacion.",
+    "koeficientet": {
+      "1": {
+        "leksion": 12,
+        "seminar": 14,
+        "laborator": 20,
+        "detyreProjekt": 5,
+        "praktike": 20
+      },
+      "2": {
+        "leksion": 10,
+        "seminar": 12,
+        "laborator": 20,
+        "detyreProjekt": 5,
+        "praktike": 20
+      }
+    },
+    "shumezoMeGrupet": {
+      "leksion": true,
+      "seminar": true,
+      "laborator": true,
+      "detyreProjekt": false,
+      "praktike": false
+    },
+    "maksimumiGrupeve": 6
+  },
+  "drejtuesiDepartamentit": "Prof. Asoc. Dr. Luis LAMANI",
   "dekani": "Prof. Asoc. Dr. Shkëlqim DAJA",
-  "drejtuesiDepartamentit": "Prof. Asoc. Dr. Luis LAMANI"
+  "administratori": "Z. Selam AGA"
 }
