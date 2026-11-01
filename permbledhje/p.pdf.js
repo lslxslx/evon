@@ -12,7 +12,7 @@ function letterPdfDefinition(d, images) {
       // Koka sipas pozicioneve dhe përmasave të modelit Word (njësia: pt).
       // Stema rezervon edhe hapësirën e kokës; logot e tjera nuk shtyjnë tekstin.
       {image:'coat',width:24.35,height:34,alignment:'center',margin:[0,0.7,0,89.3]},
-      {image:'upt',width:32.95,height:36.85,absolutePosition:{x:71.9,y:70.2}},
+      {image:'upt',width:32.95,height:36.85,absolutePosition:{x:71.9,y:70.7}},
       {image:'fgjm',width:37.45,height:36.85,absolutePosition:{x:110.5,y:70.7}},
       {image:'department',width:76.55,height:76.55,absolutePosition:{x:469,y:60.95}},
       {text:'REPUBLIKA E SHQIPËRISË',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:75.7}},
