@@ -19,7 +19,7 @@ const institution = {
 
 const fields = [
   ['teacher', 'Pedagog/e (titulli/grada dhe emri)', ''],
-  ['head', 'Drejtuesi i departamentit', 'Prof. Asoc. Dr. Luis Lamani'],
+  ['head', 'Drejtuesi i departamentit', ''],
   ['subject', 'Lënda', ''],
   ['program', 'Programi i studimit', ''],
   ['year', 'Viti akademik', '2026-2027'],
@@ -37,6 +37,64 @@ let dirty = false;
 let verified = false;
 let pdfBusy = false;
 let formRevision = 0;
+
+// Burimi i përbashkët: referenca.json në folderin kryesor.
+let formReferences = null;
+let referencesRequest = null;
+
+function applyFormReferences() {
+  $('head').value = formReferences
+    ? formReferences.drejtuesiDepartamentit
+    : '';
+  $('head').readOnly = true;
+}
+
+async function loadFormReferences() {
+  if (formReferences) return formReferences;
+  if (referencesRequest) return referencesRequest;
+
+  referencesRequest = (async () => {
+    const response = await fetch('./referenca.json', {
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error('Nuk u ngarkua referenca.json nga folderi kryesor.');
+    }
+
+    let references;
+    try {
+      references = await response.json();
+    } catch {
+      throw new Error('referenca.json nuk ka format të vlefshëm JSON.');
+    }
+
+    if (
+      !references ||
+      typeof references.drejtuesiDepartamentit !== 'string' ||
+      !references.drejtuesiDepartamentit.trim() ||
+      references.drejtuesiDepartamentit.trim().length > 300
+    ) {
+      throw new Error(
+        'Në referenca.json plotësoni drejtuesiDepartamentit (deri në 300 karaktere).'
+      );
+    }
+
+    formReferences = {
+      drejtuesiDepartamentit: references.drejtuesiDepartamentit.trim()
+    };
+    applyFormReferences();
+    return formReferences;
+  })();
+
+  try {
+    return await referencesRequest;
+  } finally {
+    // Në rast dështimi mund të riprovohet me butonin Verifiko.
+    referencesRequest = null;
+  }
+}
+
 
 reportButton.type = 'button';
 reportButton.textContent = 'Gjenero raport';
@@ -371,6 +429,8 @@ function addRow(data = {}) {
 }
 
 function readForm() {
+  applyFormReferences();
+
   const data = {
     ...institution,
     credits: labels.map((_, index) => $('c' + index).value),
@@ -630,13 +690,14 @@ $('add').onclick = event => {
 };
 
 // Verifiko formularin.
-$('verify').onclick = event => {
+$('verify').onclick = async event => {
   event.preventDefault();
 
   verified = false;
   updateActionButtons();
 
   try {
+    await loadFormReferences();
     const result = updateTotals();
     const errors = validationErrors(result);
 
@@ -891,9 +952,11 @@ $('file').onchange = async () => {
       return;
     }
 
+    await loadFormReferences();
+
     fields.forEach(([id, , defaultValue]) => {
       const value = id === 'head'
-        ? defaultValue
+        ? formReferences.drejtuesiDepartamentit
         : (data[id] ?? defaultValue);
 
       $(id).value = id === 'start'
@@ -948,6 +1011,8 @@ $('clear').onclick = event => {
     $(id).value = value;
   });
 
+  applyFormReferences();
+
   labels.forEach((_, index) => {
     $('c' + index).value = 0;
     $('g' + index).value = 1;
@@ -978,3 +1043,11 @@ addRow();
 updateTotals();
 updatePracticeVisibility();
 updateActionButtons();
+
+// Ngarkon drejtuesin pa penguar plotësimin e fushave të tjera.
+loadFormReferences().catch(error => {
+  showMessage(
+    error.message + ' Kontrolloni skedarin dhe shtypni “Verifiko” për të riprovuar.',
+    'error'
+  );
+});
