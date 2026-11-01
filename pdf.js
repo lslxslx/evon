@@ -1,6 +1,9 @@
 // Fonti i evidencës PDF: 'HelveticaNeue' ose 'Comfortaa'.
 const EVIDENCE_PDF_FONT = 'HelveticaNeue';
 
+// Fonti i raportit HTML: 'Comfortaa' ose 'HelveticaNeue'.
+const REPORT_FONT = 'Comfortaa';
+
 /* Raport narrativ HTML dhe PDF. (C) ルイス */
 
 // =====================================================
@@ -64,12 +67,12 @@ function reportHtml(data, result) {
     .replace(/_+$/, '');
 
   const regularFont = new URL(
-    'fonts/HelveticaNeue-Regular.ttf',
+    `fonts/${REPORT_FONT}-Regular.ttf`,
     document.baseURI
   ).href;
 
   const boldFont = new URL(
-    'fonts/HelveticaNeue-Bold.ttf',
+    `fonts/${REPORT_FONT}-Bold.ttf`,
     document.baseURI
   ).href;
 
@@ -267,14 +270,14 @@ function reportHtml(data, result) {
 
   <style>
     @font-face {
-      font-family: "Comfortaa";
+      font-family: "${REPORT_FONT}";
       src: url("${escape(regularFont)}") format("truetype");
       font-weight: 400;
       font-style: normal;
     }
 
     @font-face {
-      font-family: "Comfortaa";
+      font-family: "${REPORT_FONT}";
       src: url("${escape(boldFont)}") format("truetype");
       font-weight: 700;
       font-style: normal;
@@ -298,7 +301,7 @@ function reportHtml(data, result) {
     body {
       margin: 0;
       color: #171717;
-      font-family: "Comfortaa", Arial, sans-serif;
+      font-family: "${REPORT_FONT}", Arial, sans-serif;
       font-size: 9px;
       font-weight: 400;
       line-height: 1.4;
