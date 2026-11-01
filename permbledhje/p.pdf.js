@@ -33,7 +33,7 @@ function letterPdfDefinition(d, images) {
 }
 async function downloadWorkloadLetter(data) {
   if(typeof pdfMake==='undefined') throw new Error('Biblioteka pdfmake nuk u ngarkua.');
-  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/departamenti.png'};
+  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/d_logo.png'};
   const images=Object.fromEntries(await Promise.all(Object.entries(paths).map(async ([key,path])=>{
     const response=await fetch(path);if(!response.ok)throw new Error('Nuk u ngarkua '+path);
     const blob=await response.blob();const value=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Nuk u lexua '+path));r.readAsDataURL(blob);});return [key,value];
