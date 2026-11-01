@@ -9,14 +9,16 @@ function letterPdfDefinition(d, images) {
     info:{title:letterPdfName(d).replace(/\.pdf$/,''),author:d.teacher},
     defaultStyle:{font:'HelveticaNeue',fontSize:11,lineHeight:1.15},images,
     content:[
-      {image:'coat',fit:[24.35,34],alignment:'center',margin:[0,0,0,6]},
-      {text:'REPUBLIKA E SHQIPËRISË',alignment:'center',fontSize:9,lineHeight:1,margin:[0,0,0,3]},
-      {image:'upt',fit:[33,37],absolutePosition:{x:43,y:90}},
-      {image:'fgjm',fit:[37,37],absolutePosition:{x:81,y:90}},
-      {image:'department',width:76,absolutePosition:{x:476.28,y:76}},
-      {text:'UNIVERSITETI POLITEKNIK I TIRANËS',fontSize:9,lineHeight:1,alignment:'center',margin:[80,0,80,2]},
-      {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE',fontSize:9,lineHeight:1,alignment:'center',margin:[80,0,80,4]},
-      {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,lineHeight:1,alignment:'center',margin:[0,0,0,26]},
+      // Koka sipas pozicioneve dhe përmasave të modelit Word (njësia: pt).
+      // Stema rezervon edhe hapësirën e kokës; logot e tjera nuk shtyjnë tekstin.
+      {image:'coat',width:24.35,height:34,alignment:'center',margin:[0,0.7,0,89.3]},
+      {image:'upt',width:32.95,height:36.85,absolutePosition:{x:71.9,y:70.2}},
+      {image:'fgjm',width:37.45,height:36.85,absolutePosition:{x:110.5,y:70.7}},
+      {image:'department',width:76.55,height:76.55,absolutePosition:{x:469,y:60.95}},
+      {text:'REPUBLIKA E SHQIPËRISË',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:75.7}},
+      {text:'UNIVERSITETI POLITEKNIK I TIRANËS',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:92.1}},
+      {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:105.35}},
+      {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:118.6}},
       {columns:[{text:'Nr. _____ Prot.'},{text:'Tiranë, më ____.____.________',alignment:'right'}],margin:[0,0,0,22]},
       {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year]},
       {text:'ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE\nZ. SELAM AGA',bold:true,alignment:'center',margin:[0,22,0,22]},
@@ -33,7 +35,7 @@ function letterPdfDefinition(d, images) {
 }
 async function downloadWorkloadLetter(data) {
   if(typeof pdfMake==='undefined') throw new Error('Biblioteka pdfmake nuk u ngarkua.');
-  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/d_logo.png'};
+  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/departamenti.png'};
   const images=Object.fromEntries(await Promise.all(Object.entries(paths).map(async ([key,path])=>{
     const response=await fetch(path);if(!response.ok)throw new Error('Nuk u ngarkua '+path);
     const blob=await response.blob();const value=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Nuk u lexua '+path));r.readAsDataURL(blob);});return [key,value];
