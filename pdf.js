@@ -1,3 +1,6 @@
+// Fonti i evidencës PDF: 'HelveticaNeue' ose 'Comfortaa'.
+const EVIDENCE_PDF_FONT = 'HelveticaNeue';
+
 /* Raport narrativ HTML dhe PDF. (C) ルイス */
 
 // =====================================================
@@ -997,7 +1000,7 @@ function reportDefinition(data, result) {
     },
 
     defaultStyle: {
-      font: 'Comfortaa',
+      font: EVIDENCE_PDF_FONT,
       fontSize: 7,
       color: '#171717',
       lineHeight: 1.15
@@ -1203,6 +1206,23 @@ async function generatePdfBlob(data) {
       'Kontrolloni vendor/pdfmake.min.js.'
     );
   }
+
+  // Regjistron të dy fontet pa hequr fontet e tjera të aplikacionit.
+  pdfMake.fonts = {
+    ...pdfMake.fonts,
+    HelveticaNeue: {
+      normal: new URL('fonts/HelveticaNeue-Regular.ttf', document.baseURI).href,
+      bold: new URL('fonts/HelveticaNeue-Bold.ttf', document.baseURI).href,
+      italics: new URL('fonts/HelveticaNeue-Regular.ttf', document.baseURI).href,
+      bolditalics: new URL('fonts/HelveticaNeue-Bold.ttf', document.baseURI).href
+    },
+    Comfortaa: {
+      normal: new URL('fonts/Comfortaa-Regular.ttf', document.baseURI).href,
+      bold: new URL('fonts/Comfortaa-Bold.ttf', document.baseURI).href,
+      italics: new URL('fonts/Comfortaa-Regular.ttf', document.baseURI).href,
+      bolditalics: new URL('fonts/Comfortaa-Bold.ttf', document.baseURI).href
+    }
+  };
 
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
