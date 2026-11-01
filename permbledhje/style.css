@@ -1,0 +1,396 @@
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Bold.ttf") format("truetype");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: "Comfortaa", sans-serif;
+  color: #25202a;
+  background: #f5f2f7;
+
+  --stellar: #4a6381;
+  --line: #c5ced8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background: var(--stellar);
+  color: white;
+  padding: 28px 0;
+}
+
+header a {
+  color: #eee2f7;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 18px 0 10px;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0 0 18px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 1150px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+main.wrap {
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+
+.card {
+  min-width: 0;
+  background: white;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+
+  background: var(--stellar);
+  color: white;
+
+  padding: 11px 16px;
+  border: 1px solid var(--stellar);
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+button.secondary {
+  background: white;
+  color: var(--stellar);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid #ba96d6;
+  outline-offset: 2px;
+}
+
+.hint {
+  color: #6b6172;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  font-size: 14px;
+}
+
+select {
+  width: 100%;
+  min-width: 0;
+
+  font-size: 16px;
+  padding: 10px;
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+/* Tabelat */
+
+.scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  background: #f1edf5;
+  color: #493258;
+  font-weight: 600;
+}
+
+td.number {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 03 · Emërtimi i zërave majtas. */
+.summary-table th:nth-child(2),
+.summary-table td:nth-child(2) {
+  text-align: left;
+}
+
+/* 02 dhe 04 · Kategoria majtas. */
+.category-table th:first-child,
+.category-table td:first-child {
+  text-align: left;
+}
+
+.total {
+  background: #f1edf5;
+  font-weight: bold;
+}
+
+.grand {
+  background: #e6dcec;
+  font-weight: bold;
+}
+
+/* Mesazhet */
+
+#status {
+  min-width: 0;
+  max-width: 100%;
+  margin-bottom: 0;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+#status.error {
+  color: #b42318;
+}
+
+#status.success {
+  color: #21643b;
+}
+
+#preview-meta,
+#selection {
+  overflow-wrap: anywhere;
+}
+
+/* Kamera */
+
+#reader {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+
+  margin: 16px auto;
+  background: #171717;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#reader video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+
+  object-fit: cover;
+}
+
+/* Evidencat e përfshira */
+
+details {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+
+summary {
+  cursor: pointer;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+details .actions {
+  justify-content: flex-end;
+}
+
+.danger {
+  color: #a02929;
+  border-color: #a02929;
+  background: white;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Telefon */
+
+@media (max-width: 650px) {
+  .wrap {
+    padding: 0 12px;
+  }
+
+  .card {
+    padding: 18px 14px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .actions button {
+    flex-grow: 1;
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+    white-space: nowrap;
+  }
+}
+
+/* Printimi */
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  body {
+    background: white;
+  }
+
+  header {
+    background: white;
+    color: black;
+  }
+
+  header a,
+  .actions,
+  #reader,
+  #preview,
+  main > .card:first-child {
+    display: none !important;
+  }
+
+  .wrap {
+    max-width: none;
+    padding: 0;
+  }
+
+  main.wrap {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .card {
+    border: 0;
+    padding: 10px 0;
+  }
+
+  .scroll {
+    overflow: visible;
+  }
+
+  th,
+  td {
+    white-space: normal;
+  }
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* 05 · Shkresa: stilet vlejnë vetëm për këtë seksion. */
+#letter-section .letter-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+#letter-section input {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+#letter-section input:focus-visible {
+  outline: 3px solid #ba96d6;
+  outline-offset: 2px;
+}
+#letter-preview, #letter-message {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+#letter-message { color: #b42318; }
+@media (max-width: 650px) {
+  #letter-section .letter-fields { grid-template-columns: 1fr; }
+}
+@media print {
+  #letter-section { display: none !important; }
+}
