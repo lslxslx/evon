@@ -433,7 +433,7 @@ function reportHtml(data, result) {
 
     .narrative .total {
       padding-top: 10px;
-      border-top: 1px solid #ddd;
+      font-weight: bold;
     }
 
     .replacement-notes {
