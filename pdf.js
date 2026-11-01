@@ -1004,7 +1004,7 @@ function reportDefinition(data, result) {
 
     defaultStyle: {
       font: EVIDENCE_PDF_FONT,
-      fontSize: 7,
+      fontSize: 8,
       color: '#171717',
       lineHeight: 1.15
     },
@@ -1086,7 +1086,7 @@ function reportDefinition(data, result) {
 
       {
         margin: [0, 14, 0, 0],
-        fontSize: 6.5,
+        fontSize: 7,
 
         table: {
           headerRows: 2,
