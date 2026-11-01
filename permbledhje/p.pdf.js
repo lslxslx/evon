@@ -10,15 +10,13 @@ function letterPdfDefinition(d, images) {
     defaultStyle:{font:'HelveticaNeue',fontSize:11,lineHeight:1.15},images,
     content:[
       {image:'coat',fit:[24.35,34],alignment:'center',margin:[0,0,0,6]},
-      {text:'REPUBLIKA E SHQIPËRISË',alignment:'center',fontSize:9,margin:[0,0,0,8]},
-      {columns:[
-        {width:78,columns:[{image:'upt',fit:[33,37]},{image:'fgjm',fit:[37,37]}],columnGap:5},
-        {width:'*',fontSize:9,alignment:'center',stack:[
-          {text:'UNIVERSITETI POLITEKNIK I TIRANËS',margin:[0,0,0,6]},
-          {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE'}]},
-        {width:76,image:'department',margin:[0,-15,0,0]}
-      ],columnGap:5},
-      {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,alignment:'center',margin:[0,0,0,20]},
+      {text:'REPUBLIKA E SHQIPËRISË',alignment:'center',fontSize:9,lineHeight:1,margin:[0,0,0,3]},
+      {image:'upt',fit:[33,37],absolutePosition:{x:43,y:90}},
+      {image:'fgjm',fit:[37,37],absolutePosition:{x:81,y:90}},
+      {image:'department',width:76,absolutePosition:{x:476.28,y:76}},
+      {text:'UNIVERSITETI POLITEKNIK I TIRANËS',fontSize:9,lineHeight:1,alignment:'center',margin:[80,0,80,2]},
+      {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE',fontSize:9,lineHeight:1,alignment:'center',margin:[80,0,80,4]},
+      {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,lineHeight:1,alignment:'center',margin:[0,0,0,26]},
       {columns:[{text:'Nr. _____ Prot.'},{text:'Tiranë, më ____.____.________',alignment:'right'}],margin:[0,0,0,22]},
       {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year]},
       {text:'ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE\nZ. SELAM AGA',bold:true,alignment:'center',margin:[0,22,0,22]},
@@ -27,14 +25,15 @@ function letterPdfDefinition(d, images) {
       {text:['Ngarkesa e realizuar si veprimtari në auditor në mbështetje të procesit mësimor është ',b(d.total),' orë.'],margin:[0,0,0,10]},
       {text:excess>0?['Për ngarkesën e realizuar ',b(excess),' orë, mbi normën ',b(d.norm),' orë, të bëhet pagesa sipas Udhëzimit nr. 29 dt. 10.09.2018.']:['Ngarkesa e realizuar nuk e tejkalon normën prej ',b(d.norm),' orësh. Nuk ka ngarkesë mbi normë.'],alignment:'justify'},
       {unbreakable:true,margin:[0,20,0,0],columns:[
-        {alignment:'center',stack:[{text:'DREJTUES DEPARTAMENTI'},{text:'Prof. Asoc. Dr. Luis LAMANI',margin:[0,8,0,0]}]},
-        {alignment:'center',stack:[{text:'DEKANI'},{text:'Prof. Asoc. Dr. Shkëlqim DAJA',margin:[0,8,0,0]}]}
+        {width:'auto',alignment:'left',stack:[{text:'DREJTUES DEPARTAMENTI'},{text:'Prof. Asoc. Dr. Luis LAMANI',margin:[0,8,0,0]}]},
+        {width:'*',text:''},
+        {width:'auto',alignment:'right',stack:[{text:'DEKANI'},{text:'Prof. Asoc. Dr. Shkëlqim DAJA',margin:[0,8,0,0]}]}
       ]}
     ]};
 }
 async function downloadWorkloadLetter(data) {
   if(typeof pdfMake==='undefined') throw new Error('Biblioteka pdfmake nuk u ngarkua.');
-  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/d_logo.png'};
+  const paths={coat:'images/stema.jpg',upt:'images/upt.png',fgjm:'images/fgjm.jpg',department:'images/departamenti.png'};
   const images=Object.fromEntries(await Promise.all(Object.entries(paths).map(async ([key,path])=>{
     const response=await fetch(path);if(!response.ok)throw new Error('Nuk u ngarkua '+path);
     const blob=await response.blob();const value=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Nuk u lexua '+path));r.readAsDataURL(blob);});return [key,value];
