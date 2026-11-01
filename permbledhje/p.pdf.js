@@ -14,8 +14,8 @@ function letterPdfDefinition(d, images) {
       {image:'coat',width:24.35,height:34,alignment:'center',margin:[0,0.7,0,89.3]},
       {
   image: 'upt',
-  width: 32.95,
-  height: 36.85,
+  width: 36.25,
+  height: 40.54,
   absolutePosition: { x: 46.5, y: 85 }
 },
 {
@@ -30,8 +30,8 @@ function letterPdfDefinition(d, images) {
       {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:105.35}},
       {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:118.6}},
       {columns:[{text:'Nr. _____ Prot.'},{text:'Tiranë, më ____.____.________',alignment:'right'}],margin:[0,0,0,22]},
-      {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year], margin:[0,22,0,22]},
-      {text:'ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE\nZ. SELAM AGA',bold:true,alignment:'center',margin:[0,22,0,22]},
+      {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year], margin:[0,22,0,10]},
+      {text:'ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE\nZ. SELAM AGA',bold:true,alignment:'center',margin:[0,10,0,22]},
       {text:[b(d.teacher),' ka dhënë mësim si ',b(d.status),', pranë grupit mësimor të ',b(d.group),' gjatë vitit akademik ',b(d.year),' dhe ka realizuar ngarkesën mësimore në mbështetje të procesit mësimor, si më poshtë:'],alignment:'justify',margin:[0,0,0,10]},
       {fontSize:9,table:{headerRows:1,dontBreakRows:true,widths:[22,'*',80,75,45],body:d.rows.map((r,i)=>r.cells.map((t,j)=>({text:t,alignment:j===1?'left':'center',bold:i===0||r.total,fillColor:i===0?'#f0f0f0':r.total?'#f4f4f4':null})))},layout:{hLineWidth:()=>0.5,vLineWidth:()=>0.5,hLineColor:()=>'#cdcdcd',vLineColor:()=>'#cdcdcd',paddingLeft:()=>4,paddingRight:()=>4,paddingTop:()=>4,paddingBottom:()=>4},margin:[0,0,0,10]},
       {text:['Ngarkesa e realizuar si veprimtari në auditor në mbështetje të procesit mësimor është ',b(d.total),' orë.'],margin:[0,0,0,10]},
