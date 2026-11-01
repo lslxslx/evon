@@ -392,12 +392,12 @@ async function downloadWorkloadLetter(data) {
   );
 
   const regularFont = new URL(
-    'fonts/HelveticaNeue-Regular.ttf',
+    '../fonts/HelveticaNeue-Regular.ttf',
     location.href
   ).href;
 
   const boldFont = new URL(
-    'fonts/HelveticaNeue-Bold.ttf',
+    '../fonts/HelveticaNeue-Bold.ttf',
     location.href
   ).href;
 
