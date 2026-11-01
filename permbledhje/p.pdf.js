@@ -214,7 +214,7 @@ function letterPdfDefinition(d, images, references) {
           references.administratori,
         bold: true,
         alignment: 'center',
-        margin: [0, 11, 0, 22]
+        margin: [0, 21, 0, 29]
       },
 
       {
@@ -315,7 +315,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.drejtuesiDepartamentit,
-                margin: [0, 10, 0, 0]
+                margin: [0, 21, 0, 0]
               }
             ]
           },
@@ -335,7 +335,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.dekani,
-                margin: [0, 10, 0, 0]
+                margin: [0, 21, 0, 0]
               }
             ]
           }
