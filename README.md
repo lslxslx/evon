@@ -27,150 +27,253 @@ Drejtuesi i departamentit plotësohet automatikisht nga `referenca.json` dhe nuk
 
 ### 02 · Kreditet dhe ngarkesa
 
-Vendosni kreditet për lëndën/modulin e zhvilluar, grupet për çdo kategori. Aktualisht lejohen deri në 6 grupe. Kur ka kredite, kërkohet të paktën një grup. Orët e parashikuara llogariten sipas koeficientëve të konfiguruar në `referenca.json`, bazuar në Rregulloren e Zhvillimit Kurrikular
-dhe Mësimdhënies në UPT.
+Vendosni kreditet për lëndën/modulin e zhvilluar, grupet për çdo kategori. Kur ka kredite, kërkohet të paktën një grup. 
+Numri i grupeve plotësohet sipas ndarjes së miratuar nga dekanati dhe përfaqëson grupet për të cilat pedagogu realizon veçmas
+ngarkesën e deklaruar. Orët e parashikuara llogariten sipas koeficientëve të konfiguruar në `referenca.json`, bazuar në Rregulloren e Zhvillimit Kurrikular dhe Mësimdhënies në UPT.
 
 | Kategoria | Cikli I | Cikli II |
-| --- | --- | --- |
+|---|---|---|
 | Leksione | Kredite × 12 × grupe | Kredite × 10 × grupe |
 | Seminare | Kredite × 14 × grupe | Kredite × 12 × grupe |
 | Laboratorë | Kredite × 20 × grupe | Kredite × 20 × grupe |
-| Detyra/projekte | Kredite × 5 | Kredite × 5 |
-| Praktikë | Kredite × 20 | Kredite × 20 |
+| Detyra/projekte | Kredite × 5 × grupe | Kredite × 5 × grupe |
+| Praktikë | Kredite × 20 × grupe | Kredite × 20 × grupe |
 
-Totali ECTS është shuma e krediteve, pa shumëzim me grupet.
+ECTS-të totale llogariten si shuma e krediteve të kategorive, pa shumëzim me numrin e grupeve.
 
 ### 03 · Regjistrimet e mësimit
 
-Për çdo datë plotësoni studentët, temën dhe orët e zhvilluara.
+Për çdo regjistrim plotësoni datën, numrin e studentëve të pranishëm, temën dhe orët e zhvilluara sipas kategorive.
 
-- Java llogaritet nga fillimi i semestrit. Mund ta korrigjoni; fshirja e vlerës rikthen llogaritjen automatike.
-- Datat që bien të dielën nuk lejohen. Festat zyrtare nuk kontrollohen.
-- Laboratori dhe praktika shfaqen kur kanë kredite.
-- Për zëvendësimet, shënoni kutinë përkatëse dhe shtoni sqarime në fushën e shënimeve, nëse nevojiten.
+- Java llogaritet automatikisht nga data e fillimit të semestrit. Mund ta korrigjoni manualisht; fshirja e vlerës rikthen llogaritjen automatike.
+- Datat: nuk lejohen të dielat. Festat zyrtare nuk kontrollohen nga aplikacioni.
+- Lab. dhe Praktikë shfaqen vetëm kur kategoria përkatëse ka kredite te seksioni 02.
+- Zëvendësimet: shënoni kutinë përkatëse që regjistrimi të shfaqet me * në datën përkatëse. Sqarimet paraqiten në raportin narrativ.
+
+Kolona “Shuma / dt.” mbledh orët e atij regjistrimi. Nëse ka disa regjistrime për të njëjtën datë, raporti narrativ i bashkon për kontrollin e totalit ditor.
 
 ### 04 · Verifikimi dhe dokumentet
 
-Klikoni **Verifiko**. Orët faktike duhet të përputhen me orët e parashikuara për çdo kategori.
+Klikoni **Verifiko** për të kontrolluar plotësimin e formularit dhe
+përputhjen e orëve faktike me orët e llogaritura sipas krediteve dhe grupeve.
 
-Korrigjoni gabimet e shfaqura përpara se të gjeneroni dokumentet.
+Kolona **Mbeten (+) / Tejkalim (−)** tregon diferencën:
+- Vlerë pozitive: mungojnë orë.
+- Vlerë negative: janë tejkaluar orët.
+- Zero: orët përputhen.
+
+Pas verifikimit pa gabime, aktivizohen:
+- **PDF / Print** — shkarkon evidencën në PDF.
+- **Gjenero raport** — hap raportin narrativ në një skedë të re.
 
 ## 2. Dokumentet që gjenerohen
 
-### PDF / Print — Evidenca tabelore
+### PDF / Print — Evidenca mësimore
 
-Shkarkon PDF-në me të dhënat e lëndës, tabelën e mësimit, totalet, deklaratën, emrat për firmosje dhe QR-në.
+Shkarkon evidencën në PDF, me të dhënat e lëndës, kreditet dhe grupet,
+regjistrimet e mësimit, totalet e orëve dhe hapësirat për nënshkrim.
+Datat paraqiten në formatin `dd.MM.yyyy`.
 
-Datat shfaqen si `dd.MM.yyyy`. Zëvendësimet shënohen me `*`; shënimet e plota dalin vetëm në raport.
+Zëvendësimet shënohen me `*`; sqarimet përkatëse paraqiten vetëm në raportin narrativ.
+
+Kodi QR përmban të dhënat përmbledhëse të evidencës për t’u importuar te faqja **Përmbledhja e ngarkesës mësimore**.
 
 Emri i skedarit: `Evidence_EmriLendes_EmriPedagogut.pdf`.
 
 ### Gjenero raport — Raporti narrativ
 
-Hap një skedë të re me javët, datat dhe orët e realizuara. Datat me më shumë se 8 orë theksohen me të kuqe. Kategoritë me zero kredite nuk përshkruhen.
+Hap raportin në një skedë të re, duke ruajtur formularin të plotësuar.
 
-Raporti tregon datat e zëvendësimeve dhe shënimet, kur ka. Nëse nuk është shënuar asnjë zëvendësim, shfaqet “Nuk janë bërë zëvendësime.”
+Raporti përmban:
+- Javët dhe intervalin e datave të mësimit.
+- Orët faktike kundrejt orëve të përcaktuara sipas krediteve dhe grupeve.
+- Datat me mbi 8 orë mësimi gjithsej, të theksuara me të kuqe.
+- Datat e zëvendësimeve dhe shënimet, nëse ka.
+- Deklarimin, emrin e deklaruesit dhe kodin QR.
 
-Për printim përdorni **⌘P** në Mac, **Ctrl+P** në Windows ose **Share / Ndaj → Print** në iPhone/iPad. Mbyllja e raportit nuk pastron formularin.
+Kategoritë me zero kredite dhe zero orë nuk shfaqen.
+Datat e shënuara me `*` paraqiten edhe kur nuk janë shtuar sqarime.
 
-## 3. Vazhdoni më vonë
+Për printim ose ruajtje si PDF, përdorni menunë e shfletuesit:
+**⌘P** në Mac, **Ctrl+P** në Windows ose **Share → Print** në iPhone/iPad.
 
-- **Shkarko draftin:** ruan formularin e plotë si JSON.
-- **Hap draftin:** rikthen të dhënat për të vazhduar plotësimin.
-- **Formular i ri:** pastron formularin pas konfirmimit.
-- **Përmbledhja e ngarkesës mësimore:** hap faqen e përmbledhjes në një skedë të re.
+Emri i raportit: `Raport_EmriLendes_EmriDeklaruesit`.
 
-**Ruani draftin përpara mbylljes ose rifreskimit. Formulari nuk ruhet automatikisht.**
+## 3 · Vazhdoni më vonë
 
-## 4. Kodi QR
+- **Shkarko draftin** — ruan të dhënat e formularit si skedar JSON.
+- **Hap draftin** — ngarkon një draft të ruajtur për të vazhduar plotësimin.
+- **Formular i ri** — pastron formularin për një evidencë tjetër.
+- **Përmbledhja e ngarkesës mësimore** — hap faqen e përmbledhjes në një skedë të re.
 
-QR-ja në evidencë dhe raport përmban të dhënat përmbledhëse të lëndës, studentëve, grupeve dhe orëve.
+Formulari nuk ruhet automatikisht. Shkarkoni draftin përpara se të mbyllni ose rifreskoni faqen.
 
-**QR-ja nuk ruan formularin e plotë.** Për të rikthyer temat, datat dhe regjistrimet përdorni draftin JSON.
+Emri i skedarit: `formular_evidence_dtshkarkimi.json`.
 
-## 5. Përmbledhja e ngarkesës mësimore
+Drafti përdoret për të rikthyer formularin; nuk është JSON-i përmbledhës që importohet te faqja e përmbledhjes.
 
-Ngarkoni evidencat me kamerë, foto QR, PDF ose JSON përmbledhës.
+## 4 · Kodi QR
 
-Mund të zgjidhni **disa PDF njëherësh**. Lexohen me radhë dhe paraqiten te **02 · Kontrollo evidencën**. Kontrollojini dhe klikoni **Shto në përmbledhje**. Nëse një PDF nuk lexohet, aplikacioni vazhdon me të tjerët.
+Evidenca PDF dhe raporti narrativ përmbajnë një kod QR me të dhënat
+përmbledhëse: pedagogun, lëndën, programin, vitin akademik, semestrin,
+ciklin dhe numrin e studentëve, grupeve e orëve sipas kategorive.
 
-PDF-të duhet të përmbajnë QR-në e aplikacionit. Drafti JSON i formularit nuk përdoret në këtë faqe.
+QR-ja përdoret për të shtuar evidencën te faqja
+**Përmbledhja e ngarkesës mësimore**, përmes kamerës,
+ngarkimit të fotos ose PDF-së.
 
-### Si mblidhen të dhënat
+Kodi përmban të dhëna, jo një lidhje interneti. Për importim përdorni
+lexuesin e faqes së përmbledhjes.
 
-Për çdo kategori mblidhen studentët, grupet dhe orët e evidencave të përzgjedhura.
+QR-ja nuk përmban regjistrimet e plota të mësimit dhe nuk zëvendëson
+draftin JSON të formularit.
 
-Studentët merren si maksimumi i regjistruar në secilën evidencë. Numërohen një herë për çdo kategori aktive të saj; totali nuk është numër studentësh unikë në të gjitha lëndët. Orët nuk shumëzohen përsëri me grupet.
+## 5 · Përmbledhja e ngarkesës mësimore
 
-Evidencat identike nuk shtohen dy herë. Për një version të ndryshuar, mund të konfirmoni zëvendësimin.
+Kjo faqe mbledh evidencat sipas pedagogut, vitit akademik dhe semestrit.
 
-### Filtrat dhe eksportimi
+### Leximi dhe shtimi i evidencave
 
-Filtroni sipas pedagogut, vitit dhe semestrit. Zërat 6–10 nuk plotësohen nga evidenca aktuale.
+Te **01 · Lexo evidencën**, zgjidhni një mënyrë:
+- **Skano QR** — lexon kodin me kamerën.
+- **Ngarko foto QR** — lexon kodin nga një imazh.
+- **Ngarko PDF** — lexon QR-në nga një ose disa PDF të përzgjedhura.
+- **Ngarko JSON** — importon një ose disa skedarë JSON përmbledhës.
 
-- **Eksporto të gjitha evidencat:** ruan regjistrin si JSON.
-- **Eksporto JSON** te një evidencë: ruan vetëm atë evidencë.
-- **Eksporto tabelën CSV:** ruan tabelën 03 sipas filtrave aktualë.
+PDF-të duhet të përmbajnë kodin QR të aplikacionit.
 
-Në CSV, `ë` dhe `ç` kthehen në `e` dhe `c` për të shmangur problemet e shfaqjes në Excel.
+Evidencat paraqiten me radhë te **02 · Kontrollo evidencën**.
+Kontrolloni të dhënat dhe klikoni **Shto në përmbledhje**,
+ose **Kalo / Mbyll** për të mos e shtuar evidencën.
+
+Ngarkimi i skedarëve nuk i shton automatikisht evidencat në përmbledhje.
+
+### Si llogaritet përmbledhja
+
+Te **03 · Përmbledhja**, filtroni evidencat sipas pedagogut,
+vitit akademik dhe semestrit.
+
+Për çdo kategori:
+- **Studentët:** merret numri maksimal i regjistruar në secilën
+  evidencë dhe mblidhet për kategoritë me kredite.
+- **Grupet:** mblidhen grupet e deklaruara në evidencat përkatëse.
+- **Orët:** mblidhen orët faktike, pa i shumëzuar përsëri me grupet.
+
+Numri i studentëve është një total sipas evidencave,
+jo numër studentësh unikë ndërmjet lëndëve.
+
+Tabela paraqet shumën e orëve në auditor, shumën e orëve
+mbështetëse dhe totalin e përgjithshëm.
+Zërat 6–10 nuk plotësohen automatikisht nga formulari aktual.
+
+Te **04 · Evidencat e përfshira** mund të shihni evidencat
+që përbëjnë përmbledhjen.
+
+### Evidencat e përsëritura
+
+Aplikacioni identifikon evidencën sipas pedagogut, lëndës,
+programit, vitit akademik, semestrit dhe ciklit.
+
+Një evidencë identike nuk shtohet dy herë.
+Nëse të dhënat e saj kanë ndryshuar, kërkohet konfirmim
+për zëvendësimin e versionit të ruajtur.
+
+### Eksportimi
+
+- **Eksporto të gjitha evidencat** — ruan regjistrin e plotë
+  si JSON, për kopje rezervë ose transferim në një pajisje tjetër.
+- **Eksporto tabelën CSV** — ruan vetëm tabelën e seksionit 03,
+  sipas filtrave të zgjedhur.
+- **Eksporto JSON** te seksioni 04 — ruan vetëm evidencën përkatëse.
+
+CSV-ja përdor pikëpresjen (`;`) si ndarës. Për të shmangur
+problemet e karaktereve gjatë hapjes në Excel, ë/ç dhe simbolet
+e veçanta zëvendësohen me forma të thjeshta.
 
 ### Shkresa e realizimit të ngarkesës mësimore
 
-1. Te pika 03 zgjidhni pedagogun, një vit akademik dhe **Të gjithë semestrat**.
-2. Te pika 05 zgjidhni statusin PAE/PAK, grupin mësimor dhe normën.
-3. Klikoni **Gjenero shkresën** për të shkarkuar PDF-në.
+Te **05 · Shkresa e realizimit të ngarkesës mësimore**, përdoren
+evidencat e përzgjedhura te seksioni 03.
 
-Shkresa përdor evidencat e ngarkuara. Kontrolloni vetë që të jenë përfshirë të gjitha evidencat e vitit.
+Plotësoni:
+- **Statusi (PAE/PAK)**.
+- **Grupi mësimor**.
+- **Norma mësimore**, sipas kategorisë ose funksionit.
 
-Normat aktuale janë:
+Emri, viti akademik dhe tabela e ngarkesës merren
+automatikisht nga evidencat e përzgjedhura.
 
-| Kategoria / funksioni | Norma (orë) |
-| --- | ---: |
-| Profesor | 140 |
-| Lektor | 165 |
-| Asistent-lektor | 195 |
-| Drejtues departamenti | 90 |
-| Zëvendësdekan | 90 |
-| Dekan | 70 |
-| Zëvendësrektor | 60 |
-| Rektor | 50 |
+Totali përfshin orët në auditor dhe orët mbështetëse, përfshirë praktikën kur ka.
 
-**Totali = Orët në auditor + Orët mbështetëse**, përfshirë praktikën.
+Kur norma nuk tejkalohet, shkresa nuk përfshin kërkesën
+për pagesë të orëve mbi normë.
 
-**Orët mbi normë = Totali − Norma.** Nëse rezultati është negativ, merret zero dhe nuk përfshihet kërkesë për pagesë të orëve mbi normë.
+Klikoni **Gjenero shkresën** për ta shkarkuar drejtpërdrejt si PDF.
+Nëse ndryshoni evidencat ose të dhënat, gjenerojeni përsëri.
 
-Emri i skedarit: `Shkresa_EmriPedagogut_VitiAkademik.pdf`. Pas ndryshimit të të dhënave, gjenerojeni përsëri.
+Emrat e drejtuesve dhe lista e normave merren nga `referenca.json`.
 
-## 6. Ruajtja e të dhënave
+Përpara gjenerimit, sigurohuni që keni përfshirë të gjitha evidencat
+e nevojshme.
 
-- **Formulari:** ruhet për më vonë vetëm kur shkarkoni draftin.
-- **Raporti:** mban një kopje të të dhënave në skedën e vet; nuk rikthen formularin.
-- **Përmbledhja:** ruhet në shfletuesin e pajisjes. Nuk transferohet automatikisht në pajisje të tjera dhe mund të humbasë kur pastroni shfletuesin.
+## 6 · Ruajtja e të dhënave
 
-Përdorni **Eksporto të gjitha evidencat** për kopje rezervë. JSON-i i përmbledhjes dhe drafti i formularit janë skedarë me përdorime të ndryshme.
+Aplikacioni nuk ka llogari përdoruesish ose arkiv të përbashkët.
 
-## 7. Kamera dhe skanimi
+- **Formulari** nuk ruhet automatikisht. Për ta vazhduar më vonë,
+  shkarkoni draftin JSON.
+- **Përmbledhja** ruhet në `localStorage`, në shfletuesin dhe
+  pajisjen ku po punoni. Nuk sinkronizohet me pajisje të tjera.
+- **Raporti narrativ** përdor një kopje të përkohshme për hapjen
+  e skedës së re dhe ruan kopjen e vet gjatë sesionit të asaj skede.
+  Kjo nuk ruan automatikisht formularin.
 
-Mbajeni QR-në të plotë në pamje, me ndriçim të mirë dhe pa reflektime. Nëse kamera nuk e lexon, ngarkoni foton ose PDF-në origjinale.
+Pastrimi i të dhënave të shfletuesit mund të fshijë përmbledhjen.
+Në shfletim privat, ruajtja mund të jetë e përkohshme.
 
-## 8. Publikimi dhe përditësimi
+Për kopje rezervë përdorni **Shkarko draftin** për formularin
+dhe **Eksporto të gjitha evidencat** për përmbledhjen.
 
-Aplikacioni publikohet me GitHub Pages. Versioni i dokumentuar: `2026.11.3l`.
+## 7 · Përdorimi i kamerës
 
-Skedari **`referenca.json`**, në folderin kryesor, përmban emrat e drejtuesve, formulat e orëve, maksimumin e grupeve dhe normat mësimore.
+Lejoni përdorimin e kamerës kur e kërkon shfletuesi.
+Vendoseni QR-në të plotë brenda pamjes, me ndriçim të mirë
+dhe pa reflektime. Mbajeni pajisjen të qëndrueshme dhe
+rregulloni gradualisht largësinë që kodi të fokusohet.
 
-Për t’i ndryshuar, përditësoni JSON-in, publikoni ndryshimet dhe rifreskoni faqen. PDF-të e shkarkuara më parë nuk ndryshojnë. Nëse ndryshojnë formulat ose normat, përditësoni edhe tabelat në këtë README.
+Nëse skanimi është i vështirë, përdorni **Ngarko PDF**
+me dokumentin origjinal ose **Ngarko foto QR** me një imazh të qartë.
 
-Fontet e evidencës dhe raportit zgjidhen në `pdf.js`, përmes `EVIDENCE_PDF_FONT` dhe `REPORT_FONT`. Skedarët e fonteve ruhen te `fonts/`.
+## 8 · Publikimi dhe konfigurimi
 
-## 9. Kufizime të rëndësishme
+Aplikacioni publikohet në GitHub Pages dhe përdoret nga shfletuesi,
+pa instalim dhe pa identifikim.
 
-- Lejohen 1–100 regjistrime për evidencë.
-- PDF-të për import lejohen deri në 100 faqe dhe 30 MB secili.
-- Emërtimet shumë të gjata mund të tejkalojnë kapacitetin e QR-së.
-- Dokumentet me shumë përmbajtje mund të dalin në disa faqe.
-- Nuk ka arkiv të përbashkët ose sinkronizim ndërmjet përdoruesve.
+Skedari `referenca.json`, në direktorinë kryesore, përmban:
+- Emrat e drejtuesit të departamentit, dekanit dhe administratorit.
+- Koeficientët e llogaritjes së orëve sipas ciklit.
+- Kategoritë që shumëzohen me numrin e grupeve.
+- Listën e normave mësimore sipas kategorisë ose funksionit.
 
-## Rrjedha e përdorimit
+Për ndryshimin e këtyre të dhënave, përditësoni vlerat në JSON,
+duke ruajtur strukturën dhe emërtimet e fushave.
 
-**Plotëso → Verifiko → Gjenero dokumentin → Importo në përmbledhje → Kontrollo dhe shto → Eksporto / Gjenero shkresën.**
+Ndryshimet e konfigurimit nuk përditësojnë dokumentet e shkarkuara
+ose evidencat e ruajtura më parë në përmbledhje.
+
+**Versioni:** `2026.11.3l`
+
+## 9 · Kufizime
+
+- Një formular lejon deri në 100 regjistrime mësimore.
+- Dokumentet gjenerohen pasi formulari kalon verifikimin
+  dhe orët faktike përputhen me ato të parashikuara.
+- Verifikimi kontrollon të dhënat dhe llogaritjet; nuk vërteton
+  zhvillimin e mësimit ose miratimin e ngarkesës.
+- QR-ja përmban vetëm të dhënat përmbledhëse, jo formularin e plotë.
+- Evidencat me shumë regjistrime mund të shtrihen në disa faqe.
+- Për ngarkimin e bibliotekave të jashtme nevojitet lidhje interneti.
+
+## 10 · Rrjedha e përdorimit
+
+**Plotëso formularin → Verifiko → Shkarko evidencën → Importo në përmbledhje → Kontrollo totalet → Gjenero shkresën.**
