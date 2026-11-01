@@ -204,7 +204,7 @@ function letterPdfDefinition(d, images, references) {
           'Realizimi i ngarkesës mësimore për vitin akademik ' +
             d.year
         ],
-        margin: [0, 20, 0, 10]
+        margin: [0, 15, 0, 15]
       },
 
       {
@@ -214,7 +214,7 @@ function letterPdfDefinition(d, images, references) {
           references.administratori,
         bold: true,
         alignment: 'center',
-        margin: [0, 10, 0, 22]
+        margin: [0, 11, 0, 22]
       },
 
       {
