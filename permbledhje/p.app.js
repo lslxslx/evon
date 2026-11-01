@@ -1238,17 +1238,7 @@ function initPage() {
     $('pdf-file').click();
   };
 
-  $('pdf-file').onchange = async () => {
-    const file = $('pdf-file').files[0];
-
-    if (!file) return;
-
-    stopCamera();
-
-    scanBusy = true;
-    cancelFile = false;
-    scanControls();
-
+  async function readEvidencePdf(file, prefix) {
     let task = null;
     let doc = null;
 
@@ -1263,7 +1253,7 @@ function initPage() {
         );
       }
 
-      message('Po hapet PDF-ja…');
+      message(prefix + 'Po hapet PDF-ja…');
 
       const pdfjs = await import('./vendor/pdf.mjs');
 
@@ -1304,7 +1294,7 @@ function initPage() {
         }
 
         message(
-          `Po kërkohet QR në faqen ${pageNo} ` +
+          prefix + `Po kërkohet QR në faqen ${pageNo} ` +
           `nga ${doc.numPages}…`
         );
 
@@ -1371,35 +1361,72 @@ function initPage() {
         );
       }
 
-      stage([...found.values()]);
-
-      message(
-        `U lexuan ${found.size} përmbledhje nga PDF-ja. ` +
-        'Kontrollojini përpara shtimit.' +
-        (
-          invalidPages
-            ? ' Disa faqe kishin QR me të dhëna të pavlefshme.'
-            : ''
-        ),
-        'success'
-      );
-    } catch (error) {
-      message(
-        'PDF-ja nuk u importua: ' +
-        (error.message || String(error)),
-        'error'
-      );
+      return { items: [...found.values()], invalidPages };
     } finally {
       canvas.width = 1;
       canvas.height = 1;
+      if (task) await task.destroy().catch(() => {});
+    }
+  }
 
-      if (task) {
-        await task.destroy().catch(() => {});
+  // Vetëm PDF-të lejojnë zgjedhje të shumëfishtë në këtë ndryshim.
+  $('pdf-file').multiple = true;
+
+  $('pdf-file').onchange = async () => {
+    const files = Array.from($('pdf-file').files);
+    if (!files.length || scanBusy) return;
+
+    stopCamera();
+    scanBusy = true;
+    cancelFile = false;
+    scanControls();
+
+    const seen = new Set(queue.map(item => JSON.stringify(item)));
+    let successful = 0;
+    let staged = 0;
+    let duplicates = 0;
+    const failures = [];
+    const warnings = [];
+
+    try {
+      requireDecoder();
+      for (let index = 0; index < files.length; index++) {
+        if (cancelFile) break;
+        const file = files[index];
+        const prefix = '(' + (index + 1) + '/' + files.length + ') ' + file.name + ': ';
+        try {
+          const result = await readEvidencePdf(file, prefix);
+          if (cancelFile) break;
+          const fresh = result.items.filter(item => !seen.has(JSON.stringify(item)));
+          // Kufiri dhe kontrolli përpara shtimit ruhen nga stage().
+          if (fresh.length) stage(fresh);
+          fresh.forEach(item => seen.add(JSON.stringify(item)));
+          duplicates += result.items.length - fresh.length;
+          staged += fresh.length;
+          successful++;
+          if (result.invalidPages) {
+            warnings.push(file.name + ': disa faqe kishin QR të pavlefshme.');
+          }
+        } catch (error) {
+          if (cancelFile) break;
+          failures.push(file.name + ': ' + (error.message || String(error)));
+        }
       }
 
+      const lines = [
+        (cancelFile ? 'Leximi u ndërpre. ' : '') +
+        'U lexuan ' + successful + ' nga ' + files.length + ' PDF.',
+        staged + ' evidenca u vendosën për kontroll te seksioni 02.'
+      ];
+      if (duplicates) lines.push(duplicates + ' evidenca identike ishin tashmë në pritje dhe nuk u përsëritën.');
+      if (failures.length) lines.push('PDF që nuk u lexuan:\n' + failures.join('\n'));
+      if (warnings.length) lines.push(warnings.join('\n'));
+      message(lines.join('\n'), failures.length || cancelFile ? 'error' : 'success');
+    } catch (error) {
+      message('PDF-të nuk u importuan: ' + (error.message || String(error)), 'error');
+    } finally {
       scanBusy = false;
       scanControls();
-
       $('pdf-file').value = '';
     }
   };
