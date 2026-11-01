@@ -86,9 +86,6 @@ async function loadFormReferences() {
       drejtuesiDepartamentit: references.drejtuesiDepartamentit.trim()
     };
     applyFormReferences();
-    labels.forEach((_, index) => {
-      $('g' + index).max = references.ngarkesa.maksimumiGrupeve;
-    });
     updateTotals();
     return formReferences;
   })();
@@ -244,7 +241,6 @@ labels.forEach((label, index) => {
         aria-label="Grupe ${label}"
         type="number"
         min="0"
-        max="6"
         step="1"
         value="1"
       >
@@ -537,7 +533,6 @@ function changed() {
 
 function validationErrors(result) {
   const errors = [];
-  const maxGroups = getWorkloadConfiguration()?.maksimumiGrupeve ?? 6;
 
   if (!internalDate($('start').value)) {
     errors.push(
@@ -563,12 +558,11 @@ function validationErrors(result) {
     if (
       !Number.isInteger(groups) ||
       groups < 0 ||
-      groups > maxGroups ||
       (credits > 0 && groups < 1)
     ) {
       errors.push(
-        label + ': lejohen 1–' + maxGroups + ' grupe kur ka kredite, ' +
-        'ose 0 kur nuk ka.'
+        label + ': vendosni një numër të plotë jo negativ; ' +
+        'kur ka kredite, duhet të jetë të paktën 1.'
       );
     }
   });
