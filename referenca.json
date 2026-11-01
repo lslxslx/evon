@@ -21,8 +21,8 @@
       "leksion": true,
       "seminar": true,
       "laborator": true,
-      "detyreProjekt": false,
-      "praktike": false
+      "detyreProjekt": true,
+      "praktike": true
     }
   },
   "normatMesimore": {
