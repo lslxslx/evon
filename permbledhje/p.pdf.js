@@ -88,7 +88,7 @@ function letterPdfDefinition(d, images, references) {
 
     defaultStyle: {
       font: 'HelveticaNeue',
-      fontSize: 10.5,
+      fontSize: 10,
       lineHeight: 1.15
     },
 
