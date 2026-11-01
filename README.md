@@ -13,15 +13,22 @@ Aplikacion për plotësimin e evidencave, kontrollin e orëve dhe gjenerimin e d
 
 ### 01 · Të dhënat e evidencës
 
-Plotësoni emrin e pedagogut, lëndën, programin, vitin akademik, ciklin, semestrin dhe datën e fillimit të tij.
+Plotësohen të dhënat bazë:
 
-Drejtuesi i departamentit plotësohet automatikisht nga `referenca.json`.
+- Pedagogu.
+- Viti akademik.
+- Lënda dhe programi i studimit.
+- Cikli i studimit.
+- Semestri.
+- Data e fillimit të semestrit.
+
+Data e fillimit të semestrit përdoret për llogaritjen automatike të javës së çdo regjistrimi.
+Drejtuesi i departamentit plotësohet automatikisht nga `referenca.json` dhe nuk ndryshohet nga përdoruesi.
 
 ### 02 · Kreditet dhe ngarkesa
 
-Vendosni kreditet dhe grupet për çdo kategori. Aktualisht lejohen deri në 6 grupe. Kur ka kredite, kërkohet të paktën një grup.
-
-Orët llogariten sipas tabelës:
+Vendosni kreditet për lëndën/modulin e zhvilluar, grupet për çdo kategori. Aktualisht lejohen deri në 6 grupe. Kur ka kredite, kërkohet të paktën një grup. Orët e parashikuara llogariten sipas koeficientëve të konfiguruar në `referenca.json`, bazuar në Rregulloren e Zhvillimit Kurrikular
+dhe Mësimdhënies në UPT.
 
 | Kategoria | Cikli I | Cikli II |
 | --- | --- | --- |
