@@ -302,7 +302,7 @@ function letterPdfDefinition(d, images, references) {
 
       {
         unbreakable: true,
-        margin: [0, 20, 0, 0],
+        margin: [0, 33, 0, 0],
 
         columns: [
           {
@@ -315,7 +315,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.drejtuesiDepartamentit,
-                margin: [0, 21, 0, 0]
+                margin: [0, 9, 0, 0]
               }
             ]
           },
@@ -335,7 +335,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.dekani,
-                margin: [0, 21, 0, 0]
+                margin: [0, 9, 0, 0]
               }
             ]
           }
