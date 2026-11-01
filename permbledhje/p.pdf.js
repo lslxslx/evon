@@ -12,15 +12,25 @@ function letterPdfDefinition(d, images) {
       // Koka sipas pozicioneve dhe përmasave të modelit Word (njësia: pt).
       // Stema rezervon edhe hapësirën e kokës; logot e tjera nuk shtyjnë tekstin.
       {image:'coat',width:24.35,height:34,alignment:'center',margin:[0,0.7,0,89.3]},
-      {image:'upt',width:32.95,height:36.85,absolutePosition:{x:71.9,y:70.7}},
-      {image:'fgjm',width:37.45,height:36.85,absolutePosition:{x:110.5,y:70.7}},
+      {
+  image: 'upt',
+  width: 32.95,
+  height: 36.85,
+  absolutePosition: { x: 46.5, y: 85 }
+},
+{
+  image: 'fgjm',
+  width: 37.45,
+  height: 36.85,
+  absolutePosition: { x: 85.1, y: 85 }
+},
       {image:'department',width:76.55,height:76.55,absolutePosition:{x:469,y:60.95}},
       {text:'REPUBLIKA E SHQIPËRISË',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:75.7}},
       {text:'UNIVERSITETI POLITEKNIK I TIRANËS',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:92.1}},
       {text:'FAKULTETI I GJEOLOGJISË DHE I MINIERAVE',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:105.35}},
       {text:'DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS',fontSize:9,lineHeight:1,alignment:'center',width:509.28,absolutePosition:{x:43,y:118.6}},
       {columns:[{text:'Nr. _____ Prot.'},{text:'Tiranë, më ____.____.________',alignment:'right'}],margin:[0,0,0,22]},
-      {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year]},
+      {text:[b('Lënda: '),'Realizimi i ngarkesës mësimore për vitin akademik '+d.year], margin:[0,22,0,22]},
       {text:'ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE\nZ. SELAM AGA',bold:true,alignment:'center',margin:[0,22,0,22]},
       {text:[b(d.teacher),' ka dhënë mësim si ',b(d.status),', pranë grupit mësimor të ',b(d.group),' gjatë vitit akademik ',b(d.year),' dhe ka realizuar ngarkesën mësimore në mbështetje të procesit mësimor, si më poshtë:'],alignment:'justify',margin:[0,0,0,10]},
       {fontSize:9,table:{headerRows:1,dontBreakRows:true,widths:[22,'*',80,75,45],body:d.rows.map((r,i)=>r.cells.map((t,j)=>({text:t,alignment:j===1?'left':'center',bold:i===0||r.total,fillColor:i===0?'#f0f0f0':r.total?'#f4f4f4':null})))},layout:{hLineWidth:()=>0.5,vLineWidth:()=>0.5,hLineColor:()=>'#cdcdcd',vLineColor:()=>'#cdcdcd',paddingLeft:()=>4,paddingRight:()=>4,paddingTop:()=>4,paddingBottom:()=>4},margin:[0,0,0,10]},
@@ -29,7 +39,17 @@ function letterPdfDefinition(d, images) {
       {unbreakable:true,margin:[0,20,0,0],columns:[
         {width:'auto',alignment:'left',stack:[{text:'DREJTUES DEPARTAMENTI'},{text:'Prof. Asoc. Dr. Luis LAMANI',margin:[0,8,0,0]}]},
         {width:'*',text:''},
-        {width:'auto',alignment:'right',stack:[{text:'DEKANI'},{text:'Prof. Asoc. Dr. Shkëlqim DAJA',margin:[0,8,0,0]}]}
+        {
+  width: 'auto',
+  alignment: 'center',
+  stack: [
+    { text: 'DEKANI' },
+    {
+      text: 'Prof. Asoc. Dr. Shkëlqim DAJA',
+      margin: [0, 8, 0, 0]
+    }
+  ]
+}
       ]}
     ]};
 }
