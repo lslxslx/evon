@@ -15,7 +15,7 @@ Aplikacion për plotësimin e evidencave, kontrollin e orëve dhe gjenerimin e d
 
 Plotësohen të dhënat bazë:
 
-- Pedagogu.
+- Pedagog/e (titulli/grada dhe emri)
 - Viti akademik.
 - Lënda dhe programi i studimit.
 - Cikli i studimit.
