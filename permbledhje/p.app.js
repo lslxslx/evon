@@ -1660,6 +1660,7 @@ function workloadLetterHtml(data) {
 <style>
   @page { size: A4 portrait; margin: 15mm; }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin: 0; background: #ececec; color: #000;
     font: 12pt "Times New Roman", serif; }
   .letter-preview { overflow-x: auto; padding: 20px 12px; }
@@ -1768,7 +1769,14 @@ function workloadLetterHtml(data) {
     .protocol > *, .signatures > * { min-width: 0; overflow-wrap: anywhere; }
     table { width: 100%; max-width: 100%; }
     .help { display: none; }
-    .protocol { font-size: 12pt; }
+    body { font-size: 12pt; line-height: 1.15; }
+    p { line-height: 1.15; margin: 8px 0; }
+    .protocol { font-size: 12pt; margin: 20px 0; }
+    .recipient { margin: 20px 0; }
+    table { font-size: 9pt; line-height: 1.15; }
+    th, td { padding: 3px 5px; }
+    .signatures { margin-top: 18px; }
+    .signature-name { margin-top: 10px; }
     .institution { padding: 0 29mm; font-size: 10pt; }
     .letter-brand-left { width: 28mm; gap: 2mm; }
     .letter-heading .letter-upt { width: 11.62mm; height: 13mm; }

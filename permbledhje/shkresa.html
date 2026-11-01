@@ -14,6 +14,7 @@
   <p id="status" role="status">Po përgatitet shkresa…</p>
   <script>
     'use strict';
+    (async () => {
     try {
       const id = location.hash.slice(1);
       if (!/^[a-f0-9-]{36}$/i.test(id)) {
@@ -60,10 +61,27 @@
         content.appendChild(document.importNode(node, true));
       });
       document.body.replaceChildren(content);
+      const help = document.querySelector('.help');
+      const originalHelp = help ? help.textContent : '';
+      if (help) help.textContent = 'Po ngarkohen logot… Prisni përpara printimit.';
+      const outcomes = await Promise.all(Array.from(document.images, img =>
+        new Promise(resolve => {
+          const finish = () => { clearTimeout(timer); resolve(img.naturalWidth > 0 ? '' : img.getAttribute('src')); };
+          const timer = setTimeout(finish, 15000);
+          if (img.complete) finish();
+          else { img.addEventListener('load', finish, { once: true }); img.addEventListener('error', finish, { once: true }); }
+        })
+      ));
+      if (document.fonts) await document.fonts.ready;
+      const missing = outcomes.filter(Boolean);
+      if (help) help.textContent = missing.length
+        ? 'Nuk u ngarkuan imazhet: ' + missing.join(', ') + '. Kontrolloni skedarët në dosjen images dhe rifreskoni shkresën.'
+        : 'Shkresa është gati. ' + originalHelp;
     } catch (error) {
       const message = document.getElementById('status');
       if (message) message.textContent = 'Shkresa nuk u hap: ' + error.message;
     }
+    })();
   </script>
 </body>
 </html>
