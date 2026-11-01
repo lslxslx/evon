@@ -1475,7 +1475,7 @@ function initPage() {
   $('letter-status').addEventListener('change', updateLetterPreview);
   $('letter-group').addEventListener('change', updateLetterPreview);
 
-  $('generate-letter').addEventListener('click', () => {
+  $('generate-letter').addEventListener('click', async () => {
     try {
       const { selected, years, auditor, supporting, total } = letterSelection();
       if (!selected.length) throw new Error('Përzgjidhni evidencat te pika 03.');
@@ -1494,27 +1494,18 @@ function initPage() {
       }
       // Kopje e tabelës së përzgjedhur, jo lidhje me të dhëna që ndryshojnë.
       const table = $('summary').closest('table').cloneNode(true);
-      const html = workloadLetterHtml({
-        teacher: selected[0].teacher, year: years[0],
-        status, group, norm, auditor, supporting, total, tableHtml: table.outerHTML
-      });
-      const id = crypto.randomUUID();
-      const transferKey = 'evion-letter-transfer-' + id;
+      const button = $('generate-letter');
+      button.disabled = true;
       try {
-        localStorage.setItem(transferKey, JSON.stringify({
-          createdAt: Date.now(), html
+        const rows = Array.from(table.rows, row => ({
+          cells: Array.from(row.cells, cell => cell.textContent.trim()),
+          total: row.classList.contains('total') || row.classList.contains('grand')
         }));
-      } catch {
-        throw new Error('Nuk u ruajt kopja e përkohshme e shkresës. Kontrolloni hapësirën dhe lejet e shfletuesit.');
-      }
-      const link = document.createElement('a');
-      link.href = './shkresa.html#' + id;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      $('letter-message').textContent = '';
+        $('letter-message').textContent = 'Po përgatitet PDF-ja…';
+        await downloadWorkloadLetter({teacher: selected[0].teacher, year: years[0], status, group, norm, total, rows});
+        $('letter-message').textContent = 'PDF: ' + letterPdfName({teacher: selected[0].teacher, year: years[0]});
+      } finally { button.disabled = false; }
+
     } catch (error) {
       $('letter-message').textContent = error.message;
     }
@@ -1636,193 +1627,3 @@ if (document.readyState === 'loading') {
   setupSummaryCsvExport();
 }
 
-// Dokument HTML më vete për printim në A4 vertikal.
-function workloadLetterHtml(data) {
-  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[char]));
-  const fmt = value => String(round(value));
-  const excess = Math.max(0, round(data.total - data.norm));
-  const title = ('Shkresa_' + data.teacher + '_' + data.year)
-    .replace(/[^\p{L}\p{N}_-]/gu, '_').replace(/_+/g, '_');
-  const payment = excess > 0
-    ? `Për ngarkesën e realizuar <strong>${fmt(excess)}</strong> orë,
-       mbi normën <strong>${fmt(data.norm)}</strong> orë, të bëhet pagesa
-       sipas Udhëzimit nr. 29 dt. 10.09.2018.`
-    : `Ngarkesa e realizuar nuk e tejkalon normën prej
-       <strong>${fmt(data.norm)}</strong> orësh. Nuk ka ngarkesë mbi normë.`;
-  return `<!doctype html>
-<html lang="sq">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title>
-<style>
-  @page { size: A4 portrait; margin: 15mm; }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-  body { margin: 0; background: #ececec; color: #000;
-    font: 12pt "Times New Roman", serif; }
-  .letter-preview { overflow-x: auto; padding: 20px 12px; }
-  .paper {
-    width: 210mm;
-    min-height: 297mm;
-    margin: auto;
-    padding: 15mm 17mm;
-    background: white;
-    box-shadow: 0 3px 18px #00000012;
-  }
-  .help { max-width: 210mm; margin: 16px auto; padding: 0 16px;
-    font: 14px Arial, sans-serif; line-height: 1.5; }
-  .letter-heading { position: relative; margin-bottom: 3mm; break-inside: avoid;
-    padding-top: 0; font-family: "Times New Roman", serif; }
-  .letter-heading img { display: block; object-fit: contain; max-width: 100%; }
-  .letter-heading .letter-coat { width: 8.6mm; height: 12mm; margin: 0 auto 2mm; }
-  .letter-republic { text-align: center; font-size: 9pt; line-height: 1.15; }
-  .letter-institution-row { position: relative; display: flex; align-items: center;
-    justify-content: center; margin-top: 3pt; }
-  .letter-brand-left, .letter-brand-right { position: absolute;
-    display: flex; align-items: center; gap: 2mm; }
-  .letter-brand-left { left: 0px; top: -3mm; width: 28mm; }
-  .letter-brand-right { right: 0; top: -10mm; width: 27mm; justify-content: flex-end; }
-  .letter-heading .letter-upt { width: 11.62mm; height: 13mm; }
-  .letter-heading .letter-fgjm { width: 13.21mm; height: 13mm; }
-  .letter-heading .letter-department { width: 27mm; height: 27mm; }
-  .institution { width: 100%; padding: 0 29mm; text-align: center;
-    font-size: 10pt; line-height: 13.25pt; }
-  .institution div + div { margin-top: 0; }
-  .letter-department-name { margin-top: 0; text-align: center;
-    font-size: 10pt; line-height: 13.25pt; }
-  .protocol {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 33px 0;
-  }
-  p { line-height: 1.3; margin: 12px 0; text-align: justify; overflow-wrap: anywhere; }
-  .recipient {
-    text-align: center;
-    font-weight: bold;
-    margin: 33px 0;
-  }
-  table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 0;
-    table-layout: fixed;
-    font-size: 9pt;
-  }
-  th, td {
-    border: 1px solid #cdcdcd;
-    border-right: 0;
-    border-bottom: 0;
-    padding: 5px 5px;
-    text-align: center;
-    vertical-align: middle;
-    overflow-wrap: anywhere;
-  }
-  /* Kufijtë e jashtëm vizatohen nga qelizat edhe gjatë printimit. */
-  tr > th:last-child,
-  tr > td:last-child { border-right: 1px solid #cdcdcd; }
-  tbody > tr:last-child > td { border-bottom: 1px solid #cdcdcd; }
-  th { background: #f0f0f0; }
-  th:first-child, td:first-child { width: 6%; }
-  th:nth-child(2), td:nth-child(2) { width: 43%; text-align: left; }
-  thead { display: table-header-group; }
-  tr { break-inside: avoid; }
-  .total, .grand { font-weight: bold; background: #f4f4f4; }
-  .signatures {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 25px;
-    break-inside: avoid;
-  }
-  .signatures div {
-    text-align: center;
-  }
-  .signature-name {
-    margin-top: 10px;
-  }
-  @media print {
-    html, body {
-      width: auto;
-      min-width: 0;
-      margin: 0;
-      padding: 0;
-      background: white;
-    }
-    .letter-preview { overflow: visible; margin: 0; padding: 0; }
-    .paper {
-      min-height: 0;
-      box-shadow: none;
-      box-sizing: border-box;
-      width: 100%;
-      max-width: 180mm;
-      min-width: 0;
-      margin: 0 auto;
-      padding: 0 2mm;
-      overflow: visible;
-    }
-    .paper > * { min-width: 0; max-width: 100%; }
-    .protocol > *, .signatures > * { min-width: 0; overflow-wrap: anywhere; }
-    table { width: 100%; max-width: 100%; }
-    .help { display: none; }
-    body { font-size: 12pt; line-height: 1.15; }
-    p { line-height: 1.15; margin: 8px 0; }
-    .protocol { font-size: 12pt; margin: 20px 0; }
-    .recipient { margin: 20px 0; }
-    table { font-size: 9pt; line-height: 1.15; }
-    th, td { padding: 3px 5px; }
-    .signatures { margin-top: 18px; }
-    .signature-name { margin-top: 10px; }
-    .institution { padding: 0 29mm; font-size: 10pt; }
-    .letter-brand-left { width: 28mm; gap: 2mm; }
-    .letter-heading .letter-upt { width: 11.62mm; height: 13mm; }
-    .letter-heading .letter-fgjm { width: 13.21mm; height: 13mm; }
-    .letter-brand-right { width: 27mm; }
-    .letter-heading .letter-department { width: 27mm; height: 27mm; }
-    .letter-department-name { font-size: 10pt; }
-  }
-</style>
-</head>
-<body>
-<div class="help">Printoni me ⌘P / Ctrl+P. Në iPhone përdorni Ndaj / Share → Print.
-Zgjidhni A4 vertikal. Shkresa përfshin vetëm evidencat e ngarkuara dhe të përzgjedhura.</div>
-<div class="letter-preview">
-<main class="paper">
-  <div class="letter-heading">
-    <img class="letter-coat" src="./images/stema.jpg" alt="Stema e Republikës së Shqipërisë">
-    <div class="letter-republic">REPUBLIKA E SHQIPËRISË</div>
-    <div class="letter-institution-row">
-      <div class="letter-brand-left"><img class="letter-upt" src="./images/upt.png" alt="Universiteti Politeknik i Tiranës"><img class="letter-fgjm" src="./images/fgjm.jpg" alt="Fakulteti i Gjeologjisë dhe i Minierave"></div>
-      <div class="institution">
-        <div>UNIVERSITETI POLITEKNIK I TIRANËS</div>
-        <div>FAKULTETI I GJEOLOGJISË DHE I MINIERAVE</div>
-      </div>
-      <div class="letter-brand-right"><img class="letter-department" src="./images/departamenti.png" alt="Departamenti i Gjeologjisë së Zbatuar dhe Gjeoinformatikës"></div>
-    </div>
-    <div class="letter-department-name">DEPARTAMENTI I GJEOLOGJISË SË ZBATUAR DHE GJEOINFORMATIKËS</div>
-  </div>
-  <div class="protocol"><span>Nr. _____ Prot.</span><span>Tiranë, më ____.____.________</span></div>
-  <p><strong>Lënda:</strong> Realizimi i ngarkesës mësimore për vitin akademik ${esc(data.year)}</p>
-  <p class="recipient">ADMINISTRATORIT TË FAKULTETIT TË GJEOLOGJISË DHE MINIERAVE<br>Z. SELAM AGA</p>
-  <p><strong>${esc(data.teacher)}</strong> ka dhënë mësim si
-    <strong>${esc(data.status)}</strong>, pranë grupit mësimor të
-    <strong>${esc(data.group)}</strong> gjatë vitit akademik
-    <strong>${esc(data.year)}</strong> dhe ka realizuar ngarkesën mësimore
-    në mbështetje të procesit mësimor, si më poshtë:</p>
-  ${data.tableHtml}
-  <p>Ngarkesa e realizuar si veprimtari në auditor në mbështetje të procesit
-    mësimor është <strong>${fmt(data.total)}</strong> orë.</p>
-  <p>${payment}</p>
-  <div class="signatures">
-    <div>DREJTUES DEPARTAMENTI<div class="signature-name" style="width:100%">Prof. Asoc. Dr. Luis LAMANI</div></div>
-    <div>DEKANI<div class="signature-name" style="width:100%">Prof. Asoc. Dr. Shkëlqim DAJA</div></div>
-  </div>
-</main>
-</div>
-</body>
-</html>`;
-}
