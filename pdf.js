@@ -61,12 +61,12 @@ function reportHtml(data, result) {
     .replace(/_+$/, '');
 
   const regularFont = new URL(
-    'fonts/Comfortaa-Regular.ttf',
+    'fonts/HelveticaNeue-Regular.ttf',
     document.baseURI
   ).href;
 
   const boldFont = new URL(
-    'fonts/Comfortaa-Bold.ttf',
+    'fonts/HelveticaNeue-Bold.ttf',
     document.baseURI
   ).href;
 
