@@ -107,8 +107,8 @@ function letterPdfDefinition(d, images, references) {
 
       {
         image: 'upt',
-        width: 36.25,
-        height: 40.54,
+        width: 39.87,
+        height: 44.59,
         absolutePosition: {
           x: 46.5,
           y: 85
@@ -204,7 +204,7 @@ function letterPdfDefinition(d, images, references) {
           'Realizimi i ngarkesës mësimore për vitin akademik ' +
             d.year
         ],
-        margin: [0, 22, 0, 10]
+        margin: [0, 20, 0, 10]
       },
 
       {
@@ -315,7 +315,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.drejtuesiDepartamentit,
-                margin: [0, 8, 0, 0]
+                margin: [0, 10, 0, 0]
               }
             ]
           },
@@ -335,7 +335,7 @@ function letterPdfDefinition(d, images, references) {
               },
               {
                 text: references.dekani,
-                margin: [0, 8, 0, 0]
+                margin: [0, 10, 0, 0]
               }
             ]
           }
