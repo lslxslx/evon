@@ -10,7 +10,7 @@ function letterPdfName(d) {
 
 /* Leximi i emrave nga referenca.json. */
 async function loadLetterReferences() {
-  const response = await fetch('./referenca.json', {
+  const response = await fetch('../referenca.json', {
     cache: 'no-store'
   });
 
