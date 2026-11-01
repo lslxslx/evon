@@ -1658,16 +1658,20 @@ function workloadLetterHtml(data) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <style>
-  @page { size: A4 portrait; margin: 15mm; }
+  @page { size: A4 portrait; margin: 10mm 7mm; }
   * { box-sizing: border-box; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
   body { margin: 0; background: #ececec; color: #000;
-    font: 12pt "Times New Roman", serif; }
+    font: 9px/1.4 "Times New Roman", serif; }
   .letter-preview { overflow-x: auto; padding: 20px 12px; }
   .paper {
     width: 210mm;
     min-height: 297mm;
     margin: auto;
-    padding: 15mm 17mm;
+    padding: 10mm 7mm;
     background: white;
     box-shadow: 0 3px 18px #00000012;
   }
@@ -1745,38 +1749,32 @@ function workloadLetterHtml(data) {
     margin-top: 10px;
   }
   @media print {
-    html, body {
-      width: auto;
-      min-width: 0;
-      margin: 0;
-      padding: 0;
-      background: white;
+    html, body { margin: 0; padding: 0; background: #fff; }
+    body {
+      font-size: 9px;
+      line-height: 1.3;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
+    .help { display: none !important; }
     .letter-preview { overflow: visible; margin: 0; padding: 0; }
     .paper {
+      width: auto;
+      max-width: none;
       min-height: 0;
+      margin: 0;
+      padding: 0;
       box-shadow: none;
-      box-sizing: border-box;
-      width: 100%;
-      max-width: 180mm;
-      min-width: 0;
-      margin: 0 auto;
-      padding: 0 2mm;
-      overflow: visible;
     }
-    .paper > * { min-width: 0; max-width: 100%; }
-    .protocol > *, .signatures > * { min-width: 0; overflow-wrap: anywhere; }
-    table { width: 100%; max-width: 100%; }
-    .help { display: none; }
-    .protocol { font-size: 12pt; }
-    .institution { padding: 0 29mm; font-size: 10pt; }
-    .letter-brand-left { width: 28mm; gap: 2mm; }
-    .letter-heading .letter-upt { width: 11.62mm; height: 13mm; }
-    .letter-heading .letter-fgjm { width: 13.21mm; height: 13mm; }
-    .letter-brand-right { width: 27mm; }
-    .letter-heading .letter-department { width: 27mm; height: 27mm; }
-    .letter-department-name { font-size: 10pt; }
+    p { margin: 0 0 5px; line-height: 1.4; orphans: 2; widows: 2; }
+    .protocol { font-size: 9px; margin: 12px 0 10px; }
+    .recipient { margin: 12px 0 10px; }
+    table { width: 100%; font-size: 9px; line-height: 1.4; margin-bottom: 10px; }
+    th, td { padding: 2px 3px; }
+    .signatures { margin-top: 20px; break-inside: avoid; page-break-inside: avoid; }
+    .signature-name { margin-top: 10px; }
   }
+
 </style>
 </head>
 <body>
