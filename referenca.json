@@ -26,6 +26,51 @@
     },
     "maksimumiGrupeve": 6
   },
+  "normatMesimore": {
+  "referenca": "Udhëzim nr. 29 dt. 10.09.2018",
+  "lista": [
+    {
+      "id": "profesor",
+      "emertimi": "Profesor",
+      "ore": 140
+    },
+    {
+      "id": "lektor",
+      "emertimi": "Lektor",
+      "ore": 165
+    },
+    {
+      "id": "asistent-lektor",
+      "emertimi": "Asistent-lektor",
+      "ore": 195
+    },
+    {
+      "id": "drejtues-departamenti",
+      "emertimi": "Drejtues departamenti",
+      "ore": 90
+    },
+    {
+      "id": "zevendesdekan",
+      "emertimi": "Zëvendësdekan",
+      "ore": 90
+    },
+    {
+      "id": "dekan",
+      "emertimi": "Dekan",
+      "ore": 70
+    },
+    {
+      "id": "zevendesrektor",
+      "emertimi": "Zëvendësrektor",
+      "ore": 60
+    },
+    {
+      "id": "rektor",
+      "emertimi": "Rektor",
+      "ore": 50
+    }
+  ]
+},
   "drejtuesiDepartamentit": "Prof. Asoc. Dr. Luis LAMANI",
   "dekani": "Prof. Asoc. Dr. Shkëlqim DAJA",
   "administratori": "Z. Selam AGA"
