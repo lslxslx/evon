@@ -1211,7 +1211,7 @@ async function generatePdfBlob(data) {
   }
 
   // Regjistron të dy fontet pa hequr fontet e tjera të aplikacionit.
-  pdfMake.fonts = {
+  const evidenceFonts = {
     ...pdfMake.fonts,
     HelveticaNeue: {
       normal: new URL('fonts/HelveticaNeue-Regular.ttf', document.baseURI).href,
@@ -1239,7 +1239,11 @@ async function generatePdfBlob(data) {
 
     try {
       pdfMake
-        .createPdf(reportDefinition(data, result))
+        .createPdf(
+          reportDefinition(data, result),
+          undefined,
+          evidenceFonts
+        )
         .getBuffer(bytes => {
           clearTimeout(timer);
 
