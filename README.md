@@ -29,15 +29,7 @@ Drejtuesi i departamentit plotësohet automatikisht nga `referenca.json` dhe nuk
 
 Vendosni kreditet për lëndën/modulin e zhvilluar, grupet për çdo kategori. Kur ka kredite, kërkohet të paktën një grup. 
 Numri i grupeve plotësohet sipas ndarjes së miratuar nga dekanati dhe përfaqëson grupet për të cilat pedagogu realizon veçmas
-ngarkesën e deklaruar. Orët e parashikuara llogariten sipas koeficientëve të konfiguruar në `referenca.json`, bazuar në Rregulloren e Zhvillimit Kurrikular dhe Mësimdhënies në UPT.
-
-| Kategoria | Cikli I | Cikli II |
-|---|---|---|
-| Leksione | Kredite × 12 × grupe | Kredite × 10 × grupe |
-| Seminare | Kredite × 14 × grupe | Kredite × 12 × grupe |
-| Laboratorë | Kredite × 20 × grupe | Kredite × 20 × grupe |
-| Detyra/projekte | Kredite × 5 × grupe | Kredite × 5 × grupe |
-| Praktikë | Kredite × 20 × grupe | Kredite × 20 × grupe |
+ngarkesën e deklaruar. Orët e parashikuara llogariten sipas koeficientëve të tabelës 3 në Rregulloren e Zhvillimit Kurrikular dhe Mësimdhënies në UPT, të konfiguruar në `referenca.json`,
 
 ECTS-të totale llogariten si shuma e krediteve të kategorive, pa shumëzim me numrin e grupeve.
 
