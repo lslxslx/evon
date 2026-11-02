@@ -1068,13 +1068,13 @@ function initPage() {
       }
 
       stream = acquired;
+      $('reader').hidden = false;
       video.srcObject = stream;
 
       await video.play();
 
       if (token !== cameraToken) return;
 
-      $('reader').hidden = false;
       running = true;
 
       message(
