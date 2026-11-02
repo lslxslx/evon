@@ -934,9 +934,9 @@ function reportDefinition(data, result) {
 
   const plan = [
     [
-      head(''),
-      head('ECTS'),
-      head('Grupe')
+      head('', { margin: [0, 0, 0, 0] }),
+      head('ECTS', { margin: [0, 0, 0, 0] }),
+      head('Grupe', { margin: [0, 0, 0, 0] })
     ],
 
     ...labels.map((label, index) => [
