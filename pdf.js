@@ -1102,14 +1102,14 @@ function reportDefinition(data, result) {
       // Deklarata, QR-ja dhe firmat qëndrojnë së bashku.
       {
         unbreakable: true,
-        margin: [0, 23, 0, 0],
+        margin: [0, 25, 0, 0],
 
         stack: [
           {
             text:
               'Deklaroj se të dhënat e paraqitura në këtë evidencë ' +
               'pasqyrojnë ngarkesën mësimore të realizuar prej meje.',
-            margin: [0, 0, 0, 15]
+            margin: [0, 0, 0, 25]
           },
 
           {
