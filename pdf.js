@@ -1088,7 +1088,7 @@ function reportDefinition(data, result) {
 
       {
         margin: [0, 14, 0, 0],
-        fontSize: 8,
+        fontSize: 7.5,
 
         table: {
           headerRows: 2,
@@ -1109,8 +1109,8 @@ function reportDefinition(data, result) {
 
           paddingLeft: () => 2,
           paddingRight: () => 2,
-          paddingTop: () => 4,
-          paddingBottom: () => 4,
+          paddingTop: () => 3,
+          paddingBottom: () => 3,
 
           fillColor: index =>
             index === totalIndex ? '#eeeeee' : null
