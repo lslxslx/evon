@@ -1008,22 +1008,20 @@ function reportDefinition(data, result) {
       },
 
       {
-        margin: [0, 16, 0, 0],
+        text:
+          'EVIDENCË E NGARKESËS MËSIMORE ' +
+          data.year,
+        fontSize: 11,
+        bold: true,
+        margin: [0, 16, 0, 10]
+      },
 
+      {
         columns: [
           {
             width: '66%',
 
             stack: [
-              {
-                text:
-                  'EVIDENCË E NGARKESËS MËSIMORE ' +
-                  data.year,
-                fontSize: 11,
-                bold: true,
-                margin: [0, 0, 0, 10]
-              },
-
               {
                 text: 'LËNDA: ' + data.subject,
                 margin: [0, 0, 0, 5]
