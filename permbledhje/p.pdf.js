@@ -131,7 +131,7 @@ function letterPdfDefinition(d, images, references) {
         height: 76.55,
         absolutePosition: {
           x: 469,
-          y: 61.99
+          y: 66.99
         }
       },
 
@@ -155,7 +155,7 @@ function letterPdfDefinition(d, images, references) {
         width: 509.28,
         absolutePosition: {
           x: 43,
-          y: 92.1
+          y: 87.1
         }
       },
 
@@ -167,7 +167,7 @@ function letterPdfDefinition(d, images, references) {
         width: 509.28,
         absolutePosition: {
           x: 43,
-          y: 105.35
+          y: 100.35
         }
       },
 
@@ -181,7 +181,7 @@ function letterPdfDefinition(d, images, references) {
         width: 509.28,
         absolutePosition: {
           x: 43,
-          y: 118.6
+          y: 113.6
         }
       },
 
