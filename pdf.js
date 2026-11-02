@@ -1051,7 +1051,7 @@ function reportDefinition(data, result) {
 
             table: {
               headerRows: 1,
-              widths: ['auto', '*', '*'],
+              widths: ['auto', 'auto', 'auto'],
               body: plan
             },
 
