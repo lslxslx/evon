@@ -740,7 +740,7 @@ function printReport(data) {
     throw new Error(result.errors.join('\n'));
   }
 
-  const prefix = 'evion-report-transfer-';
+  const prefix = 'evon-report-transfer-';
   const now = Date.now();
   const lifetime = 15 * 60 * 1000;
 
@@ -1313,7 +1313,7 @@ function evidenceQrData(data, result) {
   });
 
   return {
-    type: 'evion-summary',
+    type: 'evon-summary',
     version: 1,
 
     teacher: cleanText(data.teacher),
