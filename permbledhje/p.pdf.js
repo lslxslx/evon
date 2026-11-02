@@ -131,7 +131,7 @@ function letterPdfDefinition(d, images, references) {
         height: 76.55,
         absolutePosition: {
           x: 469,
-          y: 64.94
+          y: 63.93
         }
       },
 
