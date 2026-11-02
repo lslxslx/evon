@@ -1,3 +1,5 @@
+/* Fontet */
+
 @font-face {
   font-family: "Comfortaa";
   src: url("../fonts/Comfortaa-Regular.ttf") format("truetype");
@@ -14,10 +16,12 @@
   font-display: swap;
 }
 
+/* Rregullat bazë */
+
 :root {
   font-family: "Comfortaa", sans-serif;
   color: #25202a;
-  background: #f5f2f7;
+  background: #f2f2f2;
 
   --stellar: #4a6381;
   --line: #c5ced8;
@@ -31,20 +35,50 @@ body {
   margin: 0;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Koka e faqes */
+
 header {
-  background: var(--stellar);
-  color: white;
-  padding: 28px 0;
+  padding: 38px 24px 32px;
+  background: #f2f2f2;
+  color: #012877;
+  text-align: center;
 }
 
 header a {
-  color: #eee2f7;
+  color: inherit;
   text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
 }
 
 h1 {
   font-size: 28px;
   margin: 18px 0 10px;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+header p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 h2 {
@@ -55,6 +89,8 @@ h2 {
 p {
   line-height: 1.6;
 }
+
+/* Përmbajtja */
 
 .wrap {
   max-width: 1150px;
@@ -75,6 +111,8 @@ main.wrap {
   border-radius: 14px;
   margin-bottom: 20px;
 }
+
+/* Butonat */
 
 .actions {
   display: flex;
@@ -112,6 +150,8 @@ select:focus-visible {
   outline: 3px solid #ba96d6;
   outline-offset: 2px;
 }
+
+/* Tekstet ndihmëse dhe filtrat */
 
 .hint {
   color: #6b6172;
@@ -179,13 +219,15 @@ td.number {
   font-variant-numeric: tabular-nums;
 }
 
-/* 03 · Emërtimi i zërave majtas. */
+/* 03 · Emërtimi i zërave majtas */
+
 .summary-table th:nth-child(2),
 .summary-table td:nth-child(2) {
   text-align: left;
 }
 
-/* 02 dhe 04 · Kategoria majtas. */
+/* 02 dhe 04 · Kategoria majtas */
+
 .category-table th:first-child,
 .category-table td:first-child {
   text-align: left;
@@ -233,6 +275,7 @@ td.number {
   max-width: 360px;
   aspect-ratio: 1 / 1;
   min-height: 0;
+
   margin: 16px auto;
   background: #171717;
   border-radius: 8px;
@@ -248,7 +291,7 @@ td.number {
   object-fit: cover;
 }
 
-/* Evidencat e përfshira */
+/* 04 · Evidencat e përfshira */
 
 details {
   border-bottom: 1px solid var(--line);
@@ -271,8 +314,52 @@ details .actions {
   background: white;
 }
 
-[hidden] {
-  display: none !important;
+/* 05 · Shkresa e realizimit të ngarkesës */
+
+#letter-section .letter-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#letter-section input {
+  width: 100%;
+  min-width: 0;
+
+  font: inherit;
+  font-size: 16px;
+
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+#letter-section input:focus-visible {
+  outline: 3px solid #ba96d6;
+  outline-offset: 2px;
+}
+
+#letter-preview,
+#letter-message {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+#letter-message {
+  color: #b42318;
+}
+
+/* Koka në ekranet e vogla */
+
+@media (max-width: 760px) {
+  header {
+    padding: 28px 18px;
+  }
+
+  header h1 {
+    font-size: 23px;
+  }
 }
 
 /* Telefon */
@@ -303,6 +390,10 @@ details .actions {
     padding: 10px 8px;
     white-space: nowrap;
   }
+
+  #letter-section .letter-fields {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Printimi */
@@ -326,7 +417,8 @@ details .actions {
   .actions,
   #reader,
   #preview,
-  main > .card:first-child {
+  main > .card:first-child,
+  #letter-section {
     display: none !important;
   }
 
@@ -353,42 +445,4 @@ details .actions {
   td {
     white-space: normal;
   }
-}
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-}
-
-/* 05 · Shkresa: stilet vlejnë vetëm për këtë seksion. */
-#letter-section .letter-fields {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-#letter-section input {
-  width: 100%;
-  min-width: 0;
-  font: inherit;
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: white;
-}
-#letter-section input:focus-visible {
-  outline: 3px solid #ba96d6;
-  outline-offset: 2px;
-}
-#letter-preview, #letter-message {
-  white-space: pre-line;
-  overflow-wrap: anywhere;
-}
-#letter-message { color: #b42318; }
-@media (max-width: 650px) {
-  #letter-section .letter-fields { grid-template-columns: 1fr; }
-}
-@media print {
-  #letter-section { display: none !important; }
 }
