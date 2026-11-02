@@ -1,7 +1,10 @@
+/* Fontet */
+
 @font-face {
   font-family: "Comfortaa";
   src: url("fonts/Comfortaa-Regular.ttf") format("truetype");
   font-weight: 300 500;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -9,18 +12,36 @@
   font-family: "Comfortaa";
   src: url("fonts/Comfortaa-Bold.ttf") format("truetype");
   font-weight: 600 900;
+  font-style: normal;
   font-display: swap;
 }
 
+/* Ngjyrat */
+
 :root {
   --primary: #4a5281;
-  --primary-dark: #563b6b;
-  --primary-light: #eee6f4;
-  --page-bg: #f6f3f8;
+  --primary-dark: #394168;
+  --primary-light: #e9ecf5;
+  --primary-light-hover: #dde2ef;
+
+  --page-bg: #f2f2f2;
+  --surface: #ffffff;
+
   --text: #382e40;
-  --muted: #776981;
-  --border: #ded3e6;
+  --muted: #707585;
+  --label: #535d70;
+  --header-text: #012877;
+
+  --border: #d5dbe5;
+  --section-border: #dfe3eb;
+  --row-border: #e8ebf1;
+
+  --table-header: #e9edf4;
+  --focus: #7b87b2;
+  --focus-ring: #b4bfdc;
 }
+
+/* Rregullat bazë */
 
 *,
 *::before,
@@ -47,15 +68,13 @@ body {
   font-style: normal;
 }
 
-/* Header */
+/* Koka e faqes */
 
 header {
   padding: 38px 24px 32px;
-  background: var(--primary);
-  color: white;
+  background: var(--page-bg);
+  color: var(--header-text);
   text-align: center;
-  border-bottom: 4px solid #cdbbdc;
-  box-shadow: 0 5px 18px rgba(69, 42, 89, 0.12);
 }
 
 header .inner,
@@ -74,7 +93,6 @@ main {
 }
 
 .institution-department {
-  color: #ffcdcd;
   letter-spacing: 0.4px;
   line-height: 1.7;
 }
@@ -83,7 +101,7 @@ main {
   width: 80px;
   height: 3px;
   margin: 22px auto;
-  background: #d8c3e8;
+  background: var(--focus-ring);
   border-radius: 3px;
 }
 
@@ -95,7 +113,6 @@ h1 {
 
 header p {
   margin: 0;
-  color: #eee5f4;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -109,10 +126,10 @@ main {
 section {
   margin-bottom: 22px;
   padding: 26px;
-  background: white;
-  border: 1px solid #e5ddeb;
+  background: var(--surface);
+  border: 1px solid var(--section-border);
   border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(69, 42, 89, 0.04);
+  box-shadow: 0 3px 12px rgba(40, 55, 85, 0.04);
 }
 
 h2 {
@@ -134,7 +151,7 @@ label,
 .cycle-field {
   display: block;
   min-width: 0;
-  color: #63536e;
+  color: var(--label);
   font-size: 13px;
 }
 
@@ -153,7 +170,7 @@ textarea {
   padding: 10px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: white;
+  background: var(--surface);
   color: var(--text);
   font: inherit;
 }
@@ -173,9 +190,9 @@ textarea {
 
 input:focus,
 textarea:focus {
-  outline: 2px solid #9470af;
+  outline: 2px solid var(--focus);
   outline-offset: 1px;
-  border-color: #9470af;
+  border-color: var(--focus);
 }
 
 /* Datat — kalendari i shfletuesit */
@@ -222,11 +239,13 @@ input[type="date"]::-webkit-date-and-time-value {
   align-items: center;
   justify-content: center;
   gap: 9px;
+
   min-height: 46px;
   padding: 9px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #faf8fc;
+
+  background: #f8f9fc;
   font-size: 14px;
   font-weight: normal;
   cursor: pointer;
@@ -234,7 +253,7 @@ input[type="date"]::-webkit-date-and-time-value {
 
 .cycle-options label:has(input:checked) {
   border-color: var(--primary);
-  background: #eee4f5;
+  background: var(--primary-light);
   color: var(--primary);
 }
 
@@ -262,15 +281,15 @@ table {
 
 th {
   padding: 12px 8px;
-  background: #e9edf4;
-  color: #594368;
+  background: var(--table-header);
+  color: var(--primary-dark);
   text-align: left;
   vertical-align: middle;
 }
 
 td {
   padding: 8px;
-  border-bottom: 1px solid #ece5f0;
+  border-bottom: 1px solid var(--row-border);
 }
 
 td input,
@@ -278,7 +297,7 @@ td textarea {
   margin: 0;
 }
 
-/* 02 · Kreditet */
+/* 02 · Kreditet dhe ngarkesa */
 
 #credits input {
   max-width: 130px;
@@ -349,25 +368,28 @@ button,
   padding: 12px 18px;
   border: 0;
   border-radius: 9px;
+
   background: var(--primary);
   color: white;
+
   font: inherit;
   font-size: 14px;
   text-decoration: none;
+
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(69, 42, 89, 0.12);
+  box-shadow: 0 2px 5px rgba(40, 55, 85, 0.12);
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 button:not(:disabled):hover,
 .download:hover {
   background: var(--primary-dark);
-  box-shadow: 0 4px 10px rgba(69, 42, 89, 0.18);
+  box-shadow: 0 4px 10px rgba(40, 55, 85, 0.18);
 }
 
 button:focus-visible,
 .download:focus-visible {
-  outline: 3px solid #b99bce;
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -378,7 +400,7 @@ button.secondary {
 }
 
 button.secondary:not(:disabled):hover {
-  background: #e0d2eb;
+  background: var(--primary-light-hover);
   box-shadow: none;
 }
 
@@ -406,6 +428,27 @@ button:disabled {
   gap: 10px;
 }
 
+/* Lidhja me përmbledhjen */
+
+.summary-link {
+  display: inline-block;
+  margin: 8px 0;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.summary-link:hover {
+  text-decoration: underline;
+}
+
+.summary-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
 /* Tekstet ndihmëse dhe mesazhet */
 
 .muted {
@@ -415,7 +458,6 @@ button:disabled {
 }
 
 .status {
-  box-sizing: border-box;
   min-width: 0;
   max-width: 100%;
 
@@ -423,8 +465,8 @@ button:disabled {
   padding: 16px;
   border-radius: 8px;
 
-  background: #f2edf6;
-  color: #594368;
+  background: var(--primary-light);
+  color: var(--primary-dark);
 
   white-space: pre-line;
   overflow-wrap: anywhere;
@@ -448,6 +490,8 @@ button:disabled {
   color: #b34b32;
   font-weight: bold;
 }
+
+/* Fundi i faqes */
 
 footer {
   padding: 12px 0 28px;
@@ -487,25 +531,4 @@ footer {
   h1 {
     font-size: 23px;
   }
-}
-
-/* Lidhja drejt përmbledhjes */
-
-.summary-link {
-  display: inline-block;
-  margin: 8px 0;
-  color: var(--primary);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.summary-link:hover {
-  text-decoration: underline;
-}
-
-.summary-link:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 4px;
-  border-radius: 3px;
 }
