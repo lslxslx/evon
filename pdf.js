@@ -922,24 +922,6 @@ function reportDefinition(data, result) {
     })
   ]);
 
-  body.push([
-    {
-      text:
-        'Shuma sipas krediteve dhe grupeve për ' +
-        'ngarkesën sipas parashikimit.',
-      colSpan: 4
-    },
-    {},
-    {},
-    {},
-
-    ...result.expected.map(value =>
-      cell(value)
-    ),
-
-    cell(sum(result.expected))
-  ]);
-
   const pageWidth = 595.28;
   const margin = 31.18;
   const contentWidth = pageWidth - 2 * margin;
