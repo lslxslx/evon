@@ -12,7 +12,7 @@ const CATEGORIES = [
   ['praktika', 'Praktika mësimore']
 ];
 
-const STORE_KEY = 'evion-summary-register-v1';
+const STORE_KEY = 'evon-summary-register-v1';
 const MAX_RECORDS = 2000;
 
 const round = value =>
@@ -32,12 +32,12 @@ const normalized = value =>
 function validateEvidence(raw) {
   if (
     !raw ||
-    raw.type !== 'evion-summary' ||
+    raw.type !== 'evon-summary' ||
     raw.version !== 1
   ) {
     throw new Error(
       'Ky nuk është JSON përmbledhës i evidencës ' +
-      '(evion-summary, version 1).'
+      '(evon-summary, version 1).'
     );
   }
 
@@ -71,7 +71,7 @@ function validateEvidence(raw) {
   }
 
   const item = {
-    type: 'evion-summary',
+    type: 'evon-summary',
     version: 1,
 
     teacher: text('teacher'),
@@ -213,7 +213,7 @@ function parseImport(text) {
 
   if (
     raw &&
-    raw.type === 'evion-collection' &&
+    raw.type === 'evon-collection' &&
     raw.version === 1
   ) {
     if (
@@ -319,7 +319,7 @@ function initPage() {
     localStorage.setItem(
       STORE_KEY,
       JSON.stringify({
-        type: 'evion-collection',
+        type: 'evon-collection',
         version: 1,
         evidences: next
       })
@@ -770,7 +770,7 @@ function initPage() {
     try {
       download(
         {
-          type: 'evion-collection',
+          type: 'evon-collection',
           version: 1,
           evidences: loadRecords()
         },
@@ -1355,9 +1355,9 @@ function initPage() {
       if (!found.size) {
         throw new Error(
           invalidPages
-            ? 'U gjet QR, por nuk përmban përmbledhje EVION të vlefshme.'
+            ? 'U gjet QR, por nuk përmban përmbajtje të vlefshme.'
             : 'Nuk u gjet QR e lexueshme. Përdorni PDF-në origjinale ' +
-              'me QR, jo një fotografi të paqartë.'
+              'me QR të lexueshme.'
         );
       }
 
