@@ -1038,8 +1038,6 @@ function initPage() {
         );
       }
 
-      $('reader').hidden = false;
-
       video.muted = true;
       video.autoplay = true;
       video.playsInline = true;
@@ -1076,6 +1074,7 @@ function initPage() {
 
       if (token !== cameraToken) return;
 
+      $('reader').hidden = false;
       running = true;
 
       message(
