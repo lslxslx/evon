@@ -951,7 +951,7 @@ function reportDefinition(data, result) {
 
     [
       {
-        text: 'ECTS tot.',
+        text: 'ECTS total',
         bold: true,
         fillColor: '#f2f2f2'
       },
