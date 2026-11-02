@@ -1047,6 +1047,7 @@ function reportDefinition(data, result) {
 
           {
             width: '34%',
+            fontSize: 7.5,
 
             table: {
               headerRows: 1,
