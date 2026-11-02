@@ -855,8 +855,8 @@ function initPage() {
   function requireDecoder() {
     if (typeof jsQR !== 'function') {
       throw new Error(
-        'Nuk u ngarkua vendor/jsQR.js. ' +
-        'Kontrolloni që folderi vendor është publikuar.'
+        'Nuk u ngarkua jsQR.js. ' +
+        'Kontrolloni që folderi vendor përmban jsQR.'
       );
     }
   }
@@ -1255,10 +1255,10 @@ function initPage() {
 
       message(prefix + 'Po hapet PDF-ja…');
 
-      const pdfjs = await import('./vendor/pdf.mjs');
+      const pdfjs = await import('../vendor/pdf.mjs');
 
       pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        './vendor/pdf.worker.mjs',
+        '../vendor/pdf.worker.mjs',
         document.baseURI
       ).href;
 
