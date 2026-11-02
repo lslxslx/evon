@@ -131,13 +131,13 @@ function letterPdfDefinition(d, images, references) {
         height: 76.55,
         absolutePosition: {
           x: 469,
-          y: 60.95
+          y: 61.99
         }
       },
 
       {
         text: 'REPUBLIKA E SHQIPËRISË',
-        fontSize: 9,
+        fontSize: 8,
         lineHeight: 1,
         alignment: 'center',
         width: 509.28,
