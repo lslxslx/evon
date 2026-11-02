@@ -1038,6 +1038,8 @@ function initPage() {
         );
       }
 
+      $('reader').hidden = false;
+
       video.muted = true;
       video.autoplay = true;
       video.playsInline = true;
@@ -1068,7 +1070,6 @@ function initPage() {
       }
 
       stream = acquired;
-      $('reader').hidden = false;
       video.srcObject = stream;
 
       await video.play();
