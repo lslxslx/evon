@@ -37,7 +37,7 @@ function validateEvidence(raw) {
   ) {
     throw new Error(
       'Ky nuk është JSON përmbledhës i evidencës ' +
-      '(evon-summary, version 1).'
+      '(evon-summary, version i aprovuar).'
     );
   }
 
