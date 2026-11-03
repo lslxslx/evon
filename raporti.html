@@ -137,9 +137,9 @@
       const data = snapshot.data;
       const result = evaluate_(data);
 
-      if (result.errors.length) {
+      if (result.dataErrors.length) {
         throw new Error(
-          result.errors.join('\n')
+          result.dataErrors.join('\n')
         );
       }
 
