@@ -29,7 +29,7 @@ Drejtuesi i departamentit plotësohet automatikisht nga `referenca.json` dhe nuk
 
 Vendosni kreditet për lëndën/modulin e zhvilluar, grupet për çdo kategori. Kur ka kredite, kërkohet të paktën një grup. 
 Numri i grupeve plotësohet sipas ndarjes së miratuar nga dekanati dhe përfaqëson grupet për të cilat pedagogu realizon veçmas
-ngarkesën e deklaruar. Orët e parashikuara llogariten sipas koeficientëve të tabelës 3 në Rregulloren e Zhvillimit Kurrikular dhe Mësimdhënies në UPT, të konfiguruar në `referenca.json`,
+ngarkesën e deklaruar. Orët e parashikuara llogariten sipas koeficientëve të tabelës 3 në Rregulloren e Zhvillimit Kurrikular dhe Mësimdhënies në UPT, të konfiguruar në `referenca.json`.
 
 ECTS-të totale llogariten si shuma e krediteve të kategorive, pa shumëzim me numrin e grupeve.
 
@@ -54,9 +54,11 @@ Kolona **Mbeten (+) / Tejkalim (−)** tregon diferencën:
 - Vlerë negative: janë tejkaluar orët.
 - Zero: orët përputhen.
 
-Pas verifikimit pa gabime, aktivizohen:
-- **PDF / Print** — shkarkon evidencën në PDF.
-- **Gjenero raport** — hap raportin narrativ në një skedë të re.
+Pas verifikimit:
+- **Gjenero raport** — aktivizohet kur të dhënat janë të vlefshme, edhe nëse orët faktike nuk përputhen me ngarkesën e parashikuar.
+- **PDF / Print** — aktivizohet vetëm kur të dhënat janë të vlefshme dhe orët përputhen për çdo kategori.
+
+Gabimet në plotësimin e të dhënave bllokojnë gjenerimin e të dy dokumenteve.
 
 ## 2. Dokumentet që gjenerohen
 
@@ -78,10 +80,15 @@ Hap raportin në një skedë të re, duke ruajtur formularin të plotësuar.
 
 Raporti përmban:
 - Javët dhe intervalin e datave të mësimit.
-- Orët faktike kundrejt orëve të përcaktuara sipas krediteve dhe grupeve.
+- Orët faktike kundrejt orëve të përcaktuara sipas krediteve dhe grupeve,
+  duke evidentuar mungesat ose tejkalimet për çdo kategori.
 - Datat me mbi 8 orë mësimi gjithsej, të theksuara me të kuqe.
 - Datat e zëvendësimeve dhe shënimet, nëse ka.
 - Deklarimin, emrin e deklaruesit dhe kodin QR.
+
+Raporti mund të gjenerohet edhe gjatë realizimit të ngarkesës.
+Përputhja e totalit nuk nënkupton domosdoshmërisht përputhjen
+e secilës kategori.
 
 Kategoritë me zero kredite dhe zero orë nuk shfaqen.
 Datat e shënuara me `*` paraqiten edhe kur nuk janë shtuar sqarime.
@@ -108,7 +115,12 @@ Drafti përdoret për të rikthyer formularin; nuk është JSON-i përmbledhës 
 
 Evidenca PDF dhe raporti narrativ përmbajnë një kod QR me të dhënat
 përmbledhëse: pedagogun, lëndën, programin, vitin akademik, semestrin,
-ciklin dhe numrin e studentëve, grupeve e orëve sipas kategorive.
+ciklin dhe, për çdo kategori me kredite, kreditet, numrin e studentëve,
+grupet dhe orët faktike.
+
+QR-ja e raportit përmban orët faktike edhe kur ngarkesa nuk është
+plotësuar. Nuk përmban orët e parashikuara, diferencat ose një shenjë
+që tregon përputhjen e ngarkesës.
 
 QR-ja përdoret për të shtuar evidencën te faqja
 **Përmbledhja e ngarkesës mësimore**, përmes kamerës,
@@ -150,6 +162,8 @@ Për çdo kategori:
   evidencë dhe mblidhet për kategoritë me kredite.
 - **Grupet:** mblidhen grupet e deklaruara në evidencat përkatëse.
 - **Orët:** mblidhen orët faktike, pa i shumëzuar përsëri me grupet.
+
+Nëse importohet raport me ngarkesë të papërfunduar, përfshihen vetëm orët e realizuara deri në atë moment.
 
 Numri i studentëve është një total sipas evidencave,
 jo numër studentësh unikë ndërmjet lëndëve.
@@ -258,8 +272,9 @@ ose evidencat e ruajtura më parë në përmbledhje.
 ## 9 · Kufizime
 
 - Një formular lejon deri në 100 regjistrime mësimore.
-- Dokumentet gjenerohen pasi formulari kalon verifikimin
-  dhe orët faktike përputhen me ato të parashikuara.
+- Të dy dokumentet kërkojnë të dhëna të vlefshme. Evidenca PDF kërkon
+  edhe përputhjen e orëve për çdo kategori; raporti narrativ lejon
+  mungesa ose tejkalime dhe i paraqet ato.
 - Verifikimi kontrollon të dhënat dhe llogaritjet; nuk vërteton
   zhvillimin e mësimit ose miratimin e ngarkesës.
 - QR-ja përmban vetëm të dhënat përmbledhëse, jo formularin e plotë.
@@ -268,4 +283,6 @@ ose evidencat e ruajtura më parë në përmbledhje.
 
 ## 10 · Rrjedha e përdorimit
 
-**Plotëso formularin → Verifiko → Shkarko evidencën → Importo në përmbledhje → Kontrollo totalet → Gjenero shkresën.**
+**Plotëso formularin → Verifiko → Gjenero raportin ose shkarko
+evidencën PDF kur orët përputhen → Importo në përmbledhje →
+Kontrollo totalet → Gjenero shkresën.**
