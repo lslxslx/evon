@@ -161,9 +161,7 @@ Për çdo kategori:
 - **Studentët:** merret numri maksimal i regjistruar në secilën
   evidencë dhe mblidhet për kategoritë me kredite.
 - **Grupet:** mblidhen grupet e deklaruara në evidencat përkatëse.
-- **Orët:** mblidhen orët faktike, pa i shumëzuar përsëri me grupet.
-
-Nëse importohet raport me ngarkesë të papërfunduar, përfshihen vetëm orët e realizuara deri në atë moment.
+- **Orët:** mblidhen orët faktike, pa i shumëzuar përsëri me grupet. Nëse importohet raport me ngarkesë të papërfunduar, përfshihen vetëm orët e realizuara deri në atë moment.
 
 Numri i studentëve është një total sipas evidencave,
 jo numër studentësh unikë ndërmjet lëndëve.
