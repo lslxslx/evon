@@ -962,7 +962,7 @@ function initPage() {
     return code ? code.data : null;
   }
 
-  async function scanSurface(source, width, height) {
+  async function scanSurface(source, width, height, pdfMode = false) {
     requireDecoder();
 
     const regions = [
@@ -989,6 +989,32 @@ function initPage() {
           height * 0.5,
           1800
         ]);
+      }
+    }
+
+    // Vetëm për PDF: zona katrore më të vogla, me mbivendosje.
+    // Izolojnë QR-në nga teksti dhe vijat e tabelës, pa ulur rezolucionin.
+    if (pdfMode) {
+      const side = Math.min(width, height) * 0.3;
+      const step = side / 2;
+      const xs = [];
+      const ys = [];
+
+      for (let x = 0; x < width - side; x += step) xs.push(x);
+      xs.push(width - side);
+      for (let y = height - side; y > 0; y -= step) ys.push(y);
+      ys.push(0);
+
+      // Qendra provohet e para; QR-ja zakonisht ndodhet poshtë firmave.
+      xs.sort((a, b) =>
+        Math.abs(a + side / 2 - width / 2) -
+        Math.abs(b + side / 2 - width / 2)
+      );
+
+      for (const y of ys) {
+        for (const x of xs) {
+          regions.push([x, y, side, side, Math.ceil(side)]);
+        }
       }
     }
 
@@ -1330,7 +1356,8 @@ function initPage() {
           const items = await scanSurface(
             canvas,
             canvas.width,
-            canvas.height
+            canvas.height,
+            true
           );
 
           if (items) {
