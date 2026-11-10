@@ -263,7 +263,7 @@ duke ruajtur strukturën dhe emërtimet e fushave.
 Ndryshimet e konfigurimit nuk përditësojnë dokumentet e shkarkuara
 ose evidencat e ruajtura më parë në përmbledhje.
 
-**Versioni:** `2026.11.10`
+**Versioni:** `2026.11.11 3l`
 
 ## 9 · Kufizime
 
