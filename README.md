@@ -7,7 +7,7 @@ permalink: /readme/
 
 Aplikacion për plotësimin e evidencave, kontrollin e orëve dhe gjenerimin e dokumenteve. Përdoret në shfletues, pa llogari përdoruesi.
 
-[**Hap aplikacionin**](https://lslxslx.github.io/evon/)
+[**Hap aplikacionin**](https://lslxslx.github.io/evion/)
 
 ## 1. Si përdoret formulari
 
