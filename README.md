@@ -268,8 +268,7 @@ ose evidencat e ruajtura më parë në përmbledhje.
 ## 9 · Kufizime
 
 - Një formular lejon deri në 100 regjistrime mësimore.
-- PDF-ja kërkon të dhëna të vlefshme; mungesat ose tejkalimet e orëve
-  lejohen dhe paraqiten në dokument.
+- PDF-ja kërkon të dhëna të vlefshme; mungesat ose tejkalimet e orëve paraqiten në dokument.
 - Verifikimi kontrollon të dhënat dhe llogaritjet; nuk vërteton
   zhvillimin e mësimit ose miratimin e ngarkesës.
 - QR-ja përmban vetëm të dhënat përmbledhëse, jo formularin e plotë.
