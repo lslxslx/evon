@@ -602,39 +602,13 @@ function narrativePdfContent(data, result) {
     color: '#943c2d'
   };
   const names = ['Leksionet', 'Seminaret', 'Laboratorët', 'Detyrat/projektet', 'Praktika'];
-  const labels = ['Leksion', 'Seminar', 'Lab.', 'Det./Proj.', 'Praktikë'];
   const sorted = [...data.rows].sort((a, b) => a.date.localeCompare(b.date));
   const first = sorted[0];
   const last = sorted[sorted.length - 1];
   const weeks = new Set(data.rows.map(row => number(row.week))).size;
-  const plan = [
-    ['', 'ECTS', 'Grupe'].map(text => ({ text, fillColor: '#eeeeee', alignment: 'center' })),
-    ...labels.map((label, i) => [label,
-      { text: fmt(data.credits[i]), alignment: 'center' },
-      { text: fmt(data.groups[i]), alignment: 'center' }]),
-    [bold('ECTS tot.'), bold(fmt(result.totalCredits)), '']
-  ];
   const content = [
-    paragraph(data.university),
-    paragraph(data.faculty),
-    paragraph(data.department),
     { text: 'RAPORT I NGARKESËS MËSIMORE ' + data.year,
-      fontSize: 11, bold: true, margin: [0, 12, 0, 10] },
-    {
-      columns: [
-        { width: '66%', stack: [
-          paragraph('LËNDA: ' + data.subject),
-          paragraph('PROGRAMI: ' + data.program),
-          paragraph('CIKLI: ' + data.cycle),
-          paragraph('SEMESTRI: ' + String(data.semester).toUpperCase())
-        ] },
-        { width: '34%', fontSize: 7.5,
-          table: { widths: ['46%', '27%', '27%'], body: plan },
-          layout: { hLineWidth: () => 0, vLineWidth: () => 0,
-            paddingLeft: () => 2, paddingRight: () => 2,
-            paddingTop: () => 2, paddingBottom: () => 2 } }
-      ]
-    },
+      fontSize: 11, bold: true, margin: [0, 0, 0, 10] },
     heading('Përmbledhje e zhvillimit të lëndës'),
     first ? paragraph([
       'Lënda ', bold(data.subject), ' është zhvilluar në ',
