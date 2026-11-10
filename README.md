@@ -70,7 +70,7 @@ Datat paraqiten në formatin `dd.MM.yyyy`.
 Kur ka diferenca, poshtë tabelës shfaqet:
 
 - **Ngarkesë e realizuar pjesërisht** — kur ka vetëm mungesa orësh.
-- **Ngarkesë me diferenca ndaj planit** — kur ka tejkalime ose mungesa
+- **Ngarkesë me diferenca ndaj planit** — kur ka tejkalime, ose mungesa
   dhe tejkalime njëkohësisht.
 
 Kur orët përputhen për çdo kategori, statusi nuk shfaqet.
