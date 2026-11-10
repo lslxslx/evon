@@ -396,6 +396,7 @@ function reportDefinition(data, result) {
   // Raporti fillon në faqe të re pas gjithë evidencës.
   definition.content.push({
     pageBreak: 'before',
+    margin: [0, 20, 0, 0],
     font: REPORT_FONT,
     fontSize: 8.5,
     lineHeight: 1.15,
