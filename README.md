@@ -5,7 +5,7 @@ permalink: /readme/
 
 # Evidencat dhe përmbledhja e ngarkesës mësimore `online`
 
-Aplikacion për plotësimin e evidencave, kontrollin e orëve dhe gjenerimin e dokumenteve. Përdoret në shfletues, pa llogari përdoruesi.
+Aplikacioni për plotësimin e evidencave, kontrollin e orëve dhe gjenerimin e dokumenteve përdoret në shfletues, pa llogari përdoruesi.
 
 [**Hap aplikacionin**](https://lslxslx.github.io/evon/)
 
