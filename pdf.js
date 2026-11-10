@@ -664,8 +664,7 @@ function narrativePdfContent(data, result) {
   const notes = String(data.notes || '').trim().replace(/^\*+\s*/, '');
   if (notes) content.push(paragraph([bold('Shënime: '), notes]));
   content.push({ unbreakable: true, margin: [0, 18, 0, 0], stack: [
-    paragraph('Deklaroj se të dhënat e paraqitura në këtë raport pasqyrojnë ngarkesën mësimore të realizuar prej meje.'),
-    { text: 'DEKLARUES', margin: [0, 18, 0, 0] },
+    { text: 'PEDAGOG/E', margin: [0, 18, 0, 0] },
     { text: data.teacher, margin: [0, 6, 0, 0] }
   ] });
   return content;
