@@ -175,7 +175,31 @@ function validateEvidence(raw) {
     CATEGORIES.findIndex(([code]) => code === b.code)
   );
 
+  // Dokumentet e vjetra importohen, por nuk autorizojnë shkresën.
+  if (Object.prototype.hasOwnProperty.call(raw, 'perputhje')) {
+    if (typeof raw.perputhje !== 'boolean') {
+      throw new Error('Fusha perputhje duhet të jetë true ose false.');
+    }
+    item.perputhje = raw.perputhje;
+  }
+
   return item;
+}
+
+// Shkresa kërkon shenjën pozitive në çdo evidencë të përzgjedhur.
+function letterWorkloadError(items) {
+  const issues = [];
+  for (const item of items) {
+    if (item.perputhje === true) continue;
+    const label = '“' + item.subject + '” (semestri ' + item.semester + ')';
+    issues.push(label + (item.perputhje === false
+      ? ': ka mungesa ose tejkalime orësh ndaj planit.'
+      : ': mungon informacioni i përputhjes. Rigjeneroni PDF-në dhe importojeni përsëri.'));
+  }
+  return issues.length
+    ? 'Shkresa nuk mund të gjenerohet. Kërkohet përputhje e plotë ' +
+      'në të gjitha evidencat e përzgjedhura.\n' + issues.join('\n')
+    : '';
 }
 
 // Identifikon evidencën sipas pedagogut, lëndës dhe periudhës.
@@ -194,6 +218,7 @@ function sameEvidence(a, b) {
   return (
     evidenceKey(a) === evidenceKey(b) &&
     a.students === b.students &&
+    a.perputhje === b.perputhje &&
     JSON.stringify(a.categories) === JSON.stringify(b.categories)
   );
 }
@@ -1543,6 +1568,7 @@ function initPage() {
   // Normat lexohen nga referenca.json në folderin kryesor.
   const configuredNorms = new Map();
   let normsError = '';
+  let letterBusy = false;
 
   async function loadLetterNorms() {
     const select = $('letter-norm');
@@ -1601,7 +1627,10 @@ function initPage() {
     const { selected, years, auditor, supporting, total } = letterSelection();
     const norm = letterNorm();
     const fmt = value => String(round(value));
-    $('letter-message').textContent = normsError;
+    const workloadError = letterWorkloadError(selected);
+    $('letter-message').textContent = normsError || workloadError;
+    $('generate-letter').disabled = letterBusy || !configuredNorms.size ||
+      !selected.length || Boolean(normsError || workloadError);
     if (!selected.length) {
       $('letter-preview').textContent = 'Nuk ka evidenca të përzgjedhura.';
       return;
@@ -1624,7 +1653,10 @@ function initPage() {
   $('generate-letter').addEventListener('click', async () => {
     try {
       const { selected, years, auditor, supporting, total } = letterSelection();
+      if (letterBusy) return;
       if (!selected.length) throw new Error('Përzgjidhni evidencat te pika 03.');
+      const workloadError = letterWorkloadError(selected);
+      if (workloadError) throw new Error(workloadError);
       if (years.length !== 1) {
         throw new Error('Te pika 03 zgjidhni vetëm një vit akademik.');
       }
@@ -1641,6 +1673,7 @@ function initPage() {
       // Kopje e tabelës së përzgjedhur, jo lidhje me të dhëna që ndryshojnë.
       const table = $('summary').closest('table').cloneNode(true);
       const button = $('generate-letter');
+      letterBusy = true;
       button.disabled = true;
       try {
         const rows = Array.from(table.rows, row => ({
@@ -1650,7 +1683,11 @@ function initPage() {
         $('letter-message').textContent = 'Po përgatitet PDF-ja…';
         await downloadWorkloadLetter({teacher: selected[0].teacher, year: years[0], status, group, norm, total, rows});
         $('letter-message').textContent = 'PDF: ' + letterPdfName({teacher: selected[0].teacher, year: years[0]});
-      } finally { button.disabled = false; }
+      } finally {
+        letterBusy = false;
+        button.disabled = !configuredNorms.size || Boolean(normsError) ||
+          !selectedRecords().length || Boolean(letterWorkloadError(selectedRecords()));
+      }
 
     } catch (error) {
       $('letter-message').textContent = error.message;
