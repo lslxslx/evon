@@ -142,17 +142,17 @@ h2 {
 
 #metadata {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 22px 28px;
   align-items: start;
 }
 
 #metadata > .metadata-half {
-  grid-column: span 3;
+  grid-column: span 6;
 }
 
-#metadata > .metadata-third {
-  grid-column: span 2;
+#metadata > .metadata-quarter {
+  grid-column: span 3;
 }
 
 label,
@@ -242,6 +242,7 @@ input[type="date"]::-webkit-date-and-time-value {
 }
 
 .cycle-options label {
+  white-space: nowrap;
   flex: 1;
   display: flex;
   align-items: center;
@@ -508,6 +509,19 @@ footer {
   text-align: center;
 }
 
+/* Hapësira e ciklit në tablet. */
+@media (min-width: 761px) and (max-width: 1000px) {
+  #metadata .cycle-options {
+    gap: 8px;
+  }
+
+  #metadata .cycle-options label {
+    gap: 6px;
+    padding: 9px 6px;
+    font-size: 13px;
+  }
+}
+
 /* Paraqitja në ekranet e vogla */
 
 @media (max-width: 760px) {
@@ -517,7 +531,7 @@ footer {
   }
 
   #metadata > .metadata-half,
-  #metadata > .metadata-third {
+  #metadata > .metadata-quarter {
     grid-column: 1 / -1;
   }
 

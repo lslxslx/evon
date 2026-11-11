@@ -21,9 +21,9 @@ const fields = [
   ['teacher', 'Pedagog/e (titulli/grada dhe emri)', ''],
   ['program', 'Programi i studimit', ''],
   ['subject', 'Lënda', ''],
-  ['start', 'Data e fillimit të semestrit', ''],
   ['year', 'Viti akademik', '2026-2027'],
   ['semester', 'Semestri', 'I/II'],
+  ['start', 'Data e fillimit të semestrit', ''],
   ['cycle', 'Cikli', '1']
 ];
 
@@ -147,7 +147,7 @@ function internalDate(value) {
 fields.forEach(([id, title, value]) => {
   if (id === 'cycle') {
     const container = document.createElement('div');
-    container.className = 'cycle-field metadata-third';
+    container.className = 'cycle-field metadata-half';
 
     container.innerHTML = `
       <span id="cycle-title">Cikli</span>
@@ -186,8 +186,8 @@ fields.forEach(([id, title, value]) => {
 
   const label = document.createElement('label');
   label.textContent = title;
-  label.className = ['year', 'semester'].includes(id)
-    ? 'metadata-third'
+  label.className = ['semester', 'start'].includes(id)
+    ? 'metadata-quarter'
     : 'metadata-half';
 
   const input = document.createElement('input');
