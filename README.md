@@ -114,9 +114,9 @@ përmbledhëse: pedagogun, lëndën, programin, vitin akademik, semestrin,
 ciklin dhe, për çdo kategori me kredite, kreditet, numrin e studentëve,
 grupet dhe orët faktike.
 
-QR-ja përmban orët faktike edhe kur ngarkesa nuk është
-plotësuar. Nuk përmban orët e parashikuara, diferencat ose një shenjë
-që tregon përputhjen e ngarkesës.
+QR-ja përmban orët faktike dhe një shenjë që tregon nëse ato
+përputhen me orët e parashikuara për çdo kategori.
+Nuk përmban orët e parashikuara ose diferencat numerike.
 
 QR-ja përdoret për të shtuar evidencën te faqja
 **Përmbledhja e ngarkesës mësimore**, përmes kamerës,
@@ -197,6 +197,13 @@ e veçanta zëvendësohen me forma të thjeshta.
 
 Te **05 · Shkresa e realizimit të ngarkesës mësimore**, përdoren
 evidencat e përzgjedhura te seksioni 03.
+
+Shkresa gjenerohet vetëm kur të gjitha evidencat e përzgjedhura
+kanë përputhje të plotë orësh për çdo kategori. Mungesat ose
+tejkalimet e bllokojnë shkresën, por jo importimin në përmbledhje.
+
+Evidencat e vjetra, pa shenjën e përputhjes në QR, duhen
+gjeneruar dhe importuar sërish për t’u përdorur në shkresë.
 
 Plotësoni:
 
