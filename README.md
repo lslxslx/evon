@@ -264,9 +264,6 @@ Skedari `referenca.json`, në direktorinë kryesore, përmban:
 - Kategoritë që shumëzohen me numrin e grupeve.
 - Listën e normave mësimore sipas kategorisë ose funksionit.
 
-Për ndryshimin e këtyre të dhënave, përditësoni vlerat në JSON,
-duke ruajtur strukturën dhe emërtimet e fushave.
-
 Ndryshimet e konfigurimit nuk përditësojnë dokumentet e shkarkuara
 ose evidencat e ruajtura më parë në përmbledhje.
 
