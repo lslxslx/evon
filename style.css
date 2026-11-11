@@ -142,9 +142,17 @@ h2 {
 
 #metadata {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 22px 28px;
   align-items: start;
+}
+
+#metadata > .metadata-half {
+  grid-column: span 3;
+}
+
+#metadata > .metadata-third {
+  grid-column: span 2;
 }
 
 label,
@@ -506,6 +514,11 @@ footer {
   #metadata {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  #metadata > .metadata-half,
+  #metadata > .metadata-third {
+    grid-column: 1 / -1;
   }
 
   section {
