@@ -267,7 +267,7 @@ Skedari `referenca.json`, në direktorinë kryesore, përmban:
 Ndryshimet e konfigurimit nuk përditësojnë dokumentet e shkarkuara
 ose evidencat e ruajtura më parë në përmbledhje.
 
-**Versioni:** `202611.11 3L`
+**Versioni:** `3L202611.11`
 
 ## 9 · Kufizime
 
