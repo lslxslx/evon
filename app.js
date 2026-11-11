@@ -23,7 +23,7 @@ const fields = [
   ['subject', 'Lënda', ''],
   ['year', 'Viti akademik', '2026-2027'],
   ['semester', 'Semestri', 'I/II'],
-  ['start', 'Data e fillimit të semestrit', ''],
+  ['start', 'Fillimi i semestrit', ''],
   ['cycle', 'Cikli', '1']
 ];
 
