@@ -489,7 +489,14 @@ button:disabled {
   line-height: 1.5;
 }
 
-.form-links .readme-link {
+/* Udhëzuesi në rresht të veçantë, majtas */
+
+.form-guide {
+  margin-top: 24px;
+  text-align: left;
+}
+
+.form-guide .readme-link {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.5;
@@ -497,11 +504,11 @@ button:disabled {
   text-underline-offset: 3px;
 }
 
-.form-links .readme-link:hover {
+.form-guide .readme-link:hover {
   color: var(--primary);
 }
 
-.form-links .readme-link:focus-visible {
+.form-guide .readme-link:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
   border-radius: 3px;
