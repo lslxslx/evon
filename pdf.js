@@ -347,31 +347,39 @@ function reportDefinition(data, result) {
           },
 
           {
+            columnGap: 12,
             columns: [
               {
-                width: '50%',
-
+                width: '*',
+                alignment: 'left',
                 stack: [
-                  {
-                    text: 'DEKLARUES'
-                  },
-
+                  { text: 'DEKLARUES' },
                   {
                     text: data.teacher,
-                    margin: [0, 5, 8, 0]
+                    margin: [0, 5, 0, 0]
                   }
                 ]
               },
-
               {
-                width: '50%',
-                alignment: 'right',
-
+                width: 'auto',
                 stack: [
                   {
-                    text: 'DREJTUES DEPARTAMENTI'
-                  },
-
+                    qr: qrText,
+                    eccLevel: 'M',
+                    fit: qrFit,
+                    padding: 4,
+                    foreground: '#1a1a1a',
+                    background: '#ffffff',
+                    alignment: 'center',
+                    margin: [0, 0, 0, 0]
+                  }
+                ]
+              },
+              {
+                width: '*',
+                alignment: 'right',
+                stack: [
+                  { text: 'DREJTUES DEPARTAMENTI' },
                   {
                     text: data.head,
                     margin: [0, 5, 0, 0]
@@ -379,18 +387,6 @@ function reportDefinition(data, result) {
                 ]
               }
             ]
-          },
-
-          // QR nën deklaruesin dhe drejtuesin e departamentit.
-          {
-            qr: qrText,
-            eccLevel: 'M',
-            fit: qrFit,
-            padding: 4,
-            foreground: '#1a1a1a',
-            background: '#ffffff',
-            alignment: 'center',
-            margin: [0, 20, 0, 0]
           }
         ]
       }
