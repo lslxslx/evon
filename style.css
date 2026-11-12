@@ -564,7 +564,7 @@ footer {
   }
 }
 
-/* Përmbledhja dallohet nga butonat e draftit. */
+/* Përmbledhja në bllokun e verifikimit. */
 .button-link.summary-action {
   margin-left: auto;
   max-width: 100%;
@@ -573,6 +573,6 @@ footer {
 
 @media (max-width: 760px) {
   .button-link.summary-action {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
