@@ -442,6 +442,25 @@ button:disabled {
   gap: 10px;
 }
 
+/* 04 · Butonat e verifikimit dhe përmbledhjes */
+
+.verification-actions {
+  gap: 16px 24px;
+}
+
+.verification-buttons {
+  flex: 1 0 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.button-link.summary-action {
+  flex: 0 1 auto;
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
 /* Udhëzuesi pas tekstit për ruajtjen e draftit */
 
 .muted .readme-link {
@@ -467,6 +486,11 @@ button:disabled {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+}
+
+/* Hapësira mes butonave dhe udhëzimit për draftin */
+.draft-help {
+  margin-top: 28px;
 }
 
 .status {
@@ -561,18 +585,5 @@ footer {
 
   h1 {
     font-size: 23px;
-  }
-}
-
-/* Përmbledhja në bllokun e verifikimit. */
-.button-link.summary-action {
-  margin-left: auto;
-  max-width: 100%;
-  text-align: center;
-}
-
-@media (max-width: 760px) {
-  .button-link.summary-action {
-    margin-left: 0;
   }
 }
