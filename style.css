@@ -563,3 +563,16 @@ footer {
     font-size: 23px;
   }
 }
+
+/* Përmbledhja dallohet nga butonat e draftit. */
+.button-link.summary-action {
+  margin-left: 14px;
+  max-width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .button-link.summary-action {
+    margin-left: 0;
+  }
+}
