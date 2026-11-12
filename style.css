@@ -458,6 +458,55 @@ button:disabled {
   border-radius: 3px;
 }
 
+/* Butonat dhe lidhjet te “Vazhdoni më vonë” */
+
+.form-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+}
+
+.form-bottom > .actions {
+  min-width: 0;
+}
+
+.form-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
+
+.form-links .summary-link {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.form-links .readme-link {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form-links .readme-link:hover {
+  color: var(--primary);
+}
+
+.form-links .readme-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
 /* Tekstet ndihmëse dhe mesazhet */
 
 .muted {
@@ -509,16 +558,8 @@ footer {
   text-align: center;
 }
 
-footer .readme-link {
-  display: inline;
-  margin: 0;
-  color: inherit;
-  font-size: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+/* Hapësira e ciklit në tablet */
 
-/* Hapësira e ciklit në tablet. */
 @media (min-width: 761px) and (max-width: 1000px) {
   #metadata .cycle-options {
     gap: 8px;
@@ -566,5 +607,11 @@ footer .readme-link {
 
   h1 {
     font-size: 23px;
+  }
+
+  .form-links {
+    width: 100%;
+    padding-top: 14px;
+    border-top: 1px solid var(--row-border);
   }
 }
