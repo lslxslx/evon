@@ -3,8 +3,13 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"
+  >
+
   <title>Evidenca mësimore | UPT</title>
+
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -28,7 +33,6 @@
       <div class="header-divider"></div>
 
       <h1>Evidenca e ngarkesës mësimore</h1>
-      
     </div>
   </header>
 
@@ -53,6 +57,7 @@
                 <th>Orë të parashikuara</th>
               </tr>
             </thead>
+
             <tbody></tbody>
           </table>
         </div>
@@ -72,7 +77,12 @@
           Laboratori / praktika shfaqet kur ka kredite laboratori / praktike.
         </p>
 
-        <div id="practice-warning" class="status error" role="status" hidden></div>
+        <div
+          id="practice-warning"
+          class="status error"
+          role="status"
+          hidden
+        ></div>
 
         <div class="scroll">
           <table id="lessons">
@@ -92,6 +102,7 @@
                 <th></th>
               </tr>
             </thead>
+
             <tbody></tbody>
           </table>
         </div>
@@ -125,17 +136,23 @@
                 <th>Mbeten (+) / Tejkalim (−)</th>
               </tr>
             </thead>
+
             <tbody></tbody>
           </table>
         </div>
 
-        <div id="status" class="status" role="status" aria-live="polite">Plotësoni formularin dhe shtypni “Verifiko”.
-        </div>
+        <div
+          id="status"
+          class="status"
+          role="status"
+          aria-live="polite"
+        >Plotësoni formularin dhe shtypni “Verifiko”.</div>
 
         <div class="actions">
           <button type="button" id="verify">
             Verifiko
           </button>
+
           <button type="button" id="print-pdf" disabled>
             Shkarko evidencën dhe raportin
           </button>
@@ -151,36 +168,52 @@
           Mbyllja e faqes pa ruajtur draftin humbet të dhënat.
         </p>
 
-        <div class="actions">
-          <button type="button" id="save" class="secondary">
-            Shkarko draftin
-          </button>
+        <div class="form-bottom">
+          <div class="actions">
+            <button type="button" id="save" class="secondary">
+              Shkarko draftin
+            </button>
 
-          <button type="button" id="load" class="secondary">
-            Hap draftin
-          </button>
-          
+            <button type="button" id="load" class="secondary">
+              Hap draftin
+            </button>
 
-          <input
-            type="file"
-            id="file"
-            accept=".json,application/json"
-            hidden
-          >
+            <input
+              type="file"
+              id="file"
+              accept=".json,application/json"
+              hidden
+            >
 
-          <button type="button" id="clear" class="secondary">
-            Formular i ri
-          </button>
-          <a href="./permbledhje/" class="summary-link" target="_blank" rel="noopener noreferrer">
-            Përmbledhja e ngarkesës mësimore →
-          </a>
+            <button type="button" id="clear" class="secondary">
+              Formular i ri
+            </button>
+          </div>
+
+          <nav class="form-links" aria-label="Lidhje ndihmëse">
+            <a
+              href="./permbledhje/"
+              class="summary-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Përmbledhja e ngarkesës mësimore →
+            </a>
+
+            <a
+              href="./readme/"
+              class="readme-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Udhëzuesi i përdorimit
+            </a>
+          </nav>
         </div>
       </section>
     </form>
 
     <footer>
-      <a class="readme-link" href="./readme/" target="_blank" rel="noopener">Udhëzuesi i përdorimit</a>
-      &nbsp;
       Aplikacioni nuk krijon arkiv të përbashkët të evidencave.
       Dokumenti gjenerohet nga formulari juaj.
       &copy; 2027
