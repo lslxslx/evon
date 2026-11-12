@@ -566,13 +566,13 @@ footer {
 
 /* Përmbledhja dallohet nga butonat e draftit. */
 .button-link.summary-action {
-  margin-left: 14px;
+  margin-left: auto;
   max-width: 100%;
   text-align: center;
 }
 
 @media (max-width: 760px) {
   .button-link.summary-action {
-    margin-left: 0;
+    margin-left: auto;
   }
 }
