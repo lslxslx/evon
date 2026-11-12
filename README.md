@@ -59,6 +59,8 @@ Pas verifikimit, **Shkarko evidencën dhe raportin** shkarkon një PDF
 kur të dhënat janë të vlefshme, edhe nëse ka mungesa ose tejkalime orësh.
 Gabimet në plotësimin e formularit bllokojnë gjenerimin.
 
+**Përmbledhja e ngarkesës mësimore** — hap faqen e përmbledhjes në një skedë të re.
+
 ## 2. Dokumenti që gjenerohet
 
 ### Evidenca mësimore
@@ -99,7 +101,6 @@ Përputhja e totalit nuk nënkupton përputhjen e secilës kategori.
 - **Shkarko draftin** — ruan të dhënat e formularit si skedar JSON.
 - **Hap draftin** — ngarkon një draft të ruajtur për të vazhduar plotësimin.
 - **Formular i ri** — pastron formularin për një evidencë tjetër.
-- **Përmbledhja e ngarkesës mësimore** — hap faqen e përmbledhjes në një skedë të re.
 
 Formulari nuk ruhet automatikisht. Shkarkoni draftin përpara se të mbyllni ose rifreskoni faqen.
 
