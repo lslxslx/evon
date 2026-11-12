@@ -157,8 +157,9 @@ vitit akademik dhe semestrit.
 
 Për çdo kategori:
 
-- **Studentët:** merret numri maksimal i regjistruar në secilën
-  evidencë dhe mblidhet për kategoritë me kredite.
+- **Studentët:** për çdo kategori merret maksimumi nga regjistrimet
+  ku ajo ka orë. Në përmbledhje mblidhen maksimumet e evidencave
+  të përfshira.
 - **Grupet:** mblidhen grupet e deklaruara në evidencat përkatëse.
 - **Orët:** mblidhen orët faktike, pa i shumëzuar përsëri me grupet. Nëse importohet evidencë me ngarkesë të papërfunduar, përfshihen vetëm orët e realizuara deri në atë moment.
 
@@ -201,9 +202,6 @@ evidencat e përzgjedhura te seksioni 03.
 Shkresa gjenerohet vetëm kur të gjitha evidencat e përzgjedhura
 kanë përputhje të plotë orësh për çdo kategori. Mungesat ose
 tejkalimet e bllokojnë shkresën, por jo importimin në përmbledhje.
-
-Evidencat e vjetra, pa shenjën e përputhjes në QR, duhen
-gjeneruar dhe importuar sërish për t’u përdorur në shkresë.
 
 Plotësoni:
 
