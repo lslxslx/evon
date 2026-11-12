@@ -372,7 +372,8 @@ td textarea {
 /* Butonat */
 
 button,
-.download {
+.download,
+.button-link {
   display: inline-block;
   padding: 12px 18px;
   border: 0;
@@ -391,24 +392,28 @@ button,
 }
 
 button:not(:disabled):hover,
-.download:hover {
+.download:hover,
+.button-link:hover {
   background: var(--primary-dark);
   box-shadow: 0 4px 10px rgba(40, 55, 85, 0.18);
 }
 
 button:focus-visible,
-.download:focus-visible {
+.download:focus-visible,
+.button-link:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
-button.secondary {
+button.secondary,
+.button-link.secondary {
   background: var(--primary-light);
   color: var(--primary);
   box-shadow: none;
 }
 
-button.secondary:not(:disabled):hover {
+button.secondary:not(:disabled):hover,
+.button-link.secondary:hover {
   background: var(--primary-light-hover);
   box-shadow: none;
 }
@@ -437,78 +442,20 @@ button:disabled {
   gap: 10px;
 }
 
-/* Lidhja me përmbledhjen */
+/* Udhëzuesi pas tekstit për ruajtjen e draftit */
 
-.summary-link {
-  display: inline-block;
-  margin: 8px 0;
-  color: var(--primary);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.summary-link:hover {
-  text-decoration: underline;
-}
-
-.summary-link:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 4px;
-  border-radius: 3px;
-}
-
-/* Butonat dhe lidhjet te “Vazhdoni më vonë” */
-
-.form-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px 28px;
-}
-
-.form-bottom > .actions {
-  min-width: 0;
-}
-
-.form-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-
-  min-width: 0;
-  max-width: 100%;
-  margin-left: auto;
-  text-align: right;
-}
-
-.form-links .summary-link {
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* Udhëzuesi në rresht të veçantë, majtas */
-
-.form-guide {
-  margin-top: 24px;
-  text-align: left;
-}
-
-.form-guide .readme-link {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
+.muted .readme-link {
+  color: inherit;
+  font-size: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.form-guide .readme-link:hover {
+.muted .readme-link:hover {
   color: var(--primary);
 }
 
-.form-guide .readme-link:focus-visible {
+.muted .readme-link:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
   border-radius: 3px;
@@ -614,11 +561,5 @@ footer {
 
   h1 {
     font-size: 23px;
-  }
-
-  .form-links {
-    width: 100%;
-    padding-top: 14px;
-    border-top: 1px solid var(--row-border);
   }
 }
