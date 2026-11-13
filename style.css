@@ -459,6 +459,8 @@ button:disabled {
   margin: 0;
   max-width: 100%;
   text-align: center;
+  background-color: bisque;
+  color: var(--primary);
 }
 
 /* Udhëzuesi pas tekstit për ruajtjen e draftit */
