@@ -445,7 +445,7 @@ button:disabled {
 /* 04 · Butonat e verifikimit dhe përmbledhjes */
 
 .verification-actions {
-  gap: 24px;
+  gap: 29px 24px;
 }
 
 .verification-buttons {
