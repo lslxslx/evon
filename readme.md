@@ -292,8 +292,6 @@ ose evidencat e ruajtura më parë në përmbledhje.
 - Shënimet për zëvendësimet lejohen deri në 500 karaktere.
 - PDF-të shfaqin shkronjat latine, përfshirë ë, ç dhe shkronjat e gjuhëve
   evropiane. Shkronjat cirilike, greke etj. nuk shfaqen në dokument.
-- Lidhja e internetit nevojitet vetëm për hapjen e faqes. Bibliotekat
-  dhe fontet ngarkohen nga vetë aplikacioni, pa shërbime të jashtme.
 
 ## 10 · Rrjedha e përdorimit
 
